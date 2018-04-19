@@ -2,6 +2,7 @@ package com.ingsoft.allpay.model;
 
 import java.util.HashSet;
 
+
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -9,11 +10,13 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.springframework.data.annotation.Id;
-
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
@@ -38,7 +41,10 @@ public class Municipalidad {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="servicios")
 	@JsonManagedReference
 	Set<ServiciosMuni> servicios = new HashSet<ServiciosMuni>();
-	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JsonBackReference
+	@JoinColumn(name = "id_municipio")
+	private Municipio municipio;
 	
 	public Integer getIdMunicipalidad() {
 		return idMunicipalidad;
@@ -75,6 +81,12 @@ public class Municipalidad {
 	}
 	public void setServicios(Set<ServiciosMuni> servicios) {
 		this.servicios = servicios;
+	}
+	public Municipio getMunicipio() {
+		return municipio;
+	}
+	public void setMunicipio(Municipio municipio) {
+		this.municipio = municipio;
 	}
 	
 	
