@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Modelos Econometricos</title>
+
+    <th:block th:include="fragments/headerinc :: head"></th:block> 
+<!--   	  <script src="../static/js/libs/FileSaver/FileSaver.min.js" th:src="@{/js/libs/FileSaver/FileSaver.min.js}"></script> -->
+<!--       <script src="../static/js/libs/jsPDF/jspdf.min.js" th:src="@{/js/libs/jsPDF/jspdf.min.js}"></script> -->
+<!--       <script src="../static/js/libs/js-xlsx/xlsx.core.min.js" th:src="@{/js/libs/js-xlsx/xlsx.core.min.js}"></script> -->
+<!--         <script src="../static/js/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js" th:src="@{/js/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js}"></script> -->
+<!--           <script src="../static/js/tableExport.min.js" th:src="@{/js/tableExport.min.js}"></script> -->
+</head>
+<body>
+<div class="container" style="width: 100%">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+</div>
+<div class="container">
+    <h1>Carga de Archivos</h1>
+
+						<form id="upload" class="smart-form">
+							<header>
+								Carga de Archivos
+							</header>
+							<fieldset>
+								<div class="row">
+
+								</div>
+							</fieldset>
+								<section>
+									<div class="input input-file">
+										<span class="button"><input accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" id="file" type="file" name="file" onchange="this.parentNode.nextSibling.value = this.value">Buscar Archivo</span><input type="text" placeholder="Selecciona tu Archivo"  >
+									</div>
+								</section>
+							<footer>
+								<button type="button" id="carga" class="btn btn-primary">
+									Cargar Archivo
+								</button>
+
+									<input  class="form-control input-lg" id="name" type="text" name="name"  placeholder="Nombre de Variable" />	
+								<button type="button" id="guarda"    class="btn btn-primary">
+									Guardar Archivo
+								</button>
+							</footer>
+						</form>
+						<div id="table" class="table-responsive"></div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+	$( "#carga" ).click(function() {
+		uploadFile();
+
+	});
+  });
+
+
+$('#guarda').click(function() {
+	var name = $("#formid").val();
+
+	
+	if(name !=""){
+
+		saveFile();
+	}
+	
+
+});
+
+
+function saveFile() {
+	var file = $("#file").val();
+	var name = $("#name").val();
+	
+	var formData = new FormData();
+	formData.append('file', $('input[type=file]')[0].files[0]); 
+	formData.append('name',name)
+	
+	if( file == ""){
+  	  alert("Ningun archihvo seleccionado");
+		
+		
+	}else{
+    $.ajax({
+      url: "savefile",
+      type: "POST",
+      data: formData,
+      enctype: 'multipart/form-data',
+      processData: false,
+      contentType: false,
+      cache: false,
+      success: function (data) {
+   
+
+			
+
+
+      },
+      error: function () {
+    	  alert("N0 se pudo cargar el archivo");
+
+      }
+    });
+	}
+  } 
+  
+  
+ 
+  
+  
+  
+  
+  
+  
+function uploadFile() {
+	var file = $("#file").val();
+	if( file == ""){
+  	  alert("Ningun archihvo seleccionado");
+		
+		
+	}else{
+    $.ajax({
+      url: "upload",
+      type: "POST",
+      data: new FormData($("#upload")[0]),
+      enctype: 'multipart/form-data',
+      processData: false,
+      contentType: false,
+      cache: false,
+      success: function (data) {
+    	  var array = data.data;
+    	  $( "#tabla" ).remove();
+    	  var content = "<table id='tabla' class = 'table table-bordered'>"	
+    		  content += "<thead>"
+    		  content += "<tr>"
+			$.each(data.columna, function(i, item) {
+				 content += '<th>'+item+'</th>';
+	
+			});
+    		  content += "</tr>"
+    		  content += "</thead>"
+    			  content += "<tbody>"
+    				$.each(data.columna, function(i, item) {
+    	
+    							$.each(data.data[i], function(j, items) {
+    					
+    								$.each(items, function(h, itemss) {
+    		
+							content += "<tr id="+h+">"
+							content += "</tr>"	
+        							});
+
+    							});
+
+    				});
+
+    		  
+    		content += "<tbody>"
+    	  content += "</table>";
+    	  $('#table').append(content);
+
+			$.each(data.data, function(j, items) {				
+				$.each(items, function(h, itemss) {
+					$.each(itemss, function(k, itemsss) {
+						 var td = "<td>"+itemsss+"</td>";			 
+						 $('#'+k).append(td);
+						
+					});
+				});
+			});
+    	  
+
+			
+
+	    	  alert("carga exitosa");
+			 
+// 			 $("#guarda").css('display', '')
+
+      },
+      error: function () {
+    	  alert("No se pudo cargar el archivo");
+
+      }
+    });
+	}
+  }
+  
+
+
+</script>
+</body>
+</html>

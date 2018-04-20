@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Modelos Econometricos</title>
+
+    <th:block th:include="fragments/headerinc :: head"></th:block> 
+  	  <script src="../static/js/libs/FileSaver/FileSaver.min.js" th:src="@{/js/libs/FileSaver/FileSaver.min.js}"></script>
+      <script src="../static/js/libs/jsPDF/jspdf.min.js" th:src="@{/js/libs/jsPDF/jspdf.min.js}"></script>
+      <script src="../static/js/libs/js-xlsx/xlsx.core.min.js" th:src="@{/js/libs/js-xlsx/xlsx.core.min.js}"></script>
+        <script src="../static/js/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js" th:src="@{/js/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js}"></script>
+          <script src="../static/js/tableExport.min.js" th:src="@{/js/tableExport.min.js}"></script>
+
+
+
+</head> 
+<body>
+<div class="container" style="width: 100%">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+</div>
+<div class="container">
+    <h1>Carga de Archivos para Variables </h1>
+
+  <form id="upload-file-form">
+<select name="method" id="metodo" class="form-control input-lg" >	
+	 <option value="ex">Exogena</option>
+	 <option value="end">Endogena</option>
+</select>
+  <input  class="form-control input-lg" id="namevar" type="text" name="namevar"  placeholder="Nombre de Variable" />
+    <label for="upload-file-input">Sube tu archivo:</label>
+    <input id="upload-file-input" type="file" name="uploadfile" accept="*" />
+    <br />
+    <span id="upload-file-message"></span>
+  </form>
+</div>
+
+ <script>
+  
+    // bind the on-change event for the input element (triggered when a file
+    // is chosen)
+    $(document).ready(function() {
+      $("#upload-file-input").on("change", uploadFile);
+    });
+    
+    /**
+     * Upload the file sending it via Ajax at the Spring Boot server.
+     */
+    function uploadFile() {
+      $.ajax({
+        url: "/uploadVar",
+        type: "POST",
+        data: new FormData($("#upload-file-form")[0]),
+        enctype: 'multipart/form-data',
+        processData: false,
+        contentType: false,
+        cache: false,
+        success: function () {
+          // Handle upload success
+          $("#upload-file-message").text("Craga de Datos Exitosos");
+        },
+        error: function () {
+          // Handle upload error
+          $("#upload-file-message").text(
+              "Verificar Archivo ");
+        }
+      });
+    } // function uploadFile
+  </script>
+</body>
+</html>
