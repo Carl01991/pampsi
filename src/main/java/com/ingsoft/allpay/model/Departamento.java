@@ -24,7 +24,7 @@ public class Departamento {
 	private Integer idDepartamento;
 	@Column(name = "nombre")
 	private String nombre;
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "municipios")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "departamento")
 	@JsonManagedReference
 	Set<Municipio> municipios = new HashSet<Municipio>();
 	

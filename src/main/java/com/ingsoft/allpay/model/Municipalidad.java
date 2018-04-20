@@ -38,7 +38,7 @@ public class Municipalidad {
 	private String codigoPostal;
 	@Column(name = "categoria")
 	private String categoria;
-	@OneToMany(fetch = FetchType.EAGER, mappedBy="servicios")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="municipalidad")
 	@JsonManagedReference
 	Set<ServiciosMuni> servicios = new HashSet<ServiciosMuni>();
 	@ManyToOne(fetch = FetchType.EAGER)

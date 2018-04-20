@@ -33,9 +33,9 @@ public class Municipio {
 	@JsonBackReference
 	@JoinColumn(name = "id_departamento")
 	private Departamento departamento;
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "municipalidades")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "municipio")
 	@JsonManagedReference
-	Set<Municipalidad> municipalidades = new HashSet<Municipalidad>();
+	private Set<Municipalidad> municipalidades = new HashSet<Municipalidad>();
 	
 	
 	public Integer getIdMunicipio() {
