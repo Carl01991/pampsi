@@ -7,14 +7,12 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Repository;
 
-import com.ingsoft.allpay.model.Municipalidad;
+import com.ingsoft.allpay.model.Departamento;
 import com.ingsoft.allpay.model.Municipio;
-import com.ingsoft.allpay.services.MunicipalidadService;
+import com.ingsoft.allpay.services.MunicipioService;
 
-@Repository
-public class MunicipalidadDao implements MunicipalidadService{
+public class MunicipioDao implements MunicipioService{
 
 	@Override
 	public void deleteAllInBatch() {
@@ -23,37 +21,37 @@ public class MunicipalidadDao implements MunicipalidadService{
 	}
 
 	@Override
-	public void deleteInBatch(Iterable<Municipalidad> arg0) {
+	public void deleteInBatch(Iterable<Municipio> arg0) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public List<Municipalidad> findAll() {
+	public List<Municipio> findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Municipalidad> findAll(Sort arg0) {
+	public List<Municipio> findAll(Sort arg0) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Municipalidad> findAll(Iterable<Serializable> arg0) {
+	public List<Municipio> findAll(Iterable<Serializable> arg0) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends Municipalidad> List<S> findAll(Example<S> arg0) {
+	public <S extends Municipio> List<S> findAll(Example<S> arg0) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends Municipalidad> List<S> findAll(Example<S> arg0, Sort arg1) {
+	public <S extends Municipio> List<S> findAll(Example<S> arg0, Sort arg1) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -65,37 +63,37 @@ public class MunicipalidadDao implements MunicipalidadService{
 	}
 
 	@Override
-	public Municipalidad getOne(Serializable arg0) {
+	public Municipio getOne(Serializable arg0) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends Municipalidad> List<S> save(Iterable<S> arg0) {
+	public <S extends Municipio> List<S> save(Iterable<S> arg0) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends Municipalidad> S saveAndFlush(S arg0) {
+	public <S extends Municipio> S saveAndFlush(S arg0) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Page<Municipalidad> findAll(Pageable pageable) {
+	public Page<Municipio> findAll(Pageable pageable) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends Municipalidad> S save(S entity) {
+	public <S extends Municipio> S save(S entity) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Municipalidad findOne(Serializable id) {
+	public Municipio findOne(Serializable id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -119,13 +117,13 @@ public class MunicipalidadDao implements MunicipalidadService{
 	}
 
 	@Override
-	public void delete(Municipalidad entity) {
+	public void delete(Municipio entity) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void delete(Iterable<? extends Municipalidad> entities) {
+	public void delete(Iterable<? extends Municipio> entities) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -137,31 +135,33 @@ public class MunicipalidadDao implements MunicipalidadService{
 	}
 
 	@Override
-	public <S extends Municipalidad> S findOne(Example<S> example) {
+	public <S extends Municipio> S findOne(Example<S> example) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends Municipalidad> Page<S> findAll(Example<S> example, Pageable pageable) {
+	public <S extends Municipio> Page<S> findAll(Example<S> example, Pageable pageable) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends Municipalidad> long count(Example<S> example) {
+	public <S extends Municipio> long count(Example<S> example) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public <S extends Municipalidad> boolean exists(Example<S> example) {
+	public <S extends Municipio> boolean exists(Example<S> example) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
+
+
 	@Override
-	public List<Municipalidad> findByMunicipio(Municipio idMunicipio) {
+	public Municipio findByDepartamento(Departamento idDepartamento) {
 		// TODO Auto-generated method stub
 		return null;
 	}
