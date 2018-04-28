@@ -53,18 +53,18 @@
 													<div class="row">
 																<div class="col-sm-6">
 																	<div class="form-group">
-																		<div class="input-group">
-																			<span class="input-group-addon"><i class="fa fa-flag fa-lg fa-fw"></i>Ingresa tu CUI</span>
-																			<input  class="form-control input-lg" id="scountry" type="number" name="scountry"  />
-
-															
-																		</div>
-																			<div class="input-group">
-																			<span class="input-group-addon"><i class="fa fa-flag fa-lg fa-fw"></i>Ingresa tu Email</span>
-																			<input  class="form-control input-lg" id="scountry" type="text" name="scountry"  />
-
-															
-																		</div>
+									<form action="/addCiudadano" method="POST">
+			CUI <input type="text" id="cui" name="cui" /><br />
+			Primer Nombre <input type="text" id="primerNombre" name="primerNombre" /><br />
+			Segundo Nombre <input type="text" id="segundoNombre" name="segundoNombre" /><br />
+			Primer Apellido <input type="text" id="primerApellido" name="primerApellido" /><br />
+			Segundo Apellido <input type="text" id="segundoApellido" name="segundoApellido" /><br />
+			 <select multiple="multiple" id="list" name="list" >
+ 				 <option name="nombre" value="iusi">IUSI</option>
+  				 <option name="nombre" value="isr">ISR</option>
+			</select> 
+			<input type="submit" />
+		</form>
 																	</div>
 																</div>
 															</div>
