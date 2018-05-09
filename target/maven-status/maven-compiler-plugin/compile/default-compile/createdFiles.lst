@@ -15,10 +15,15 @@ com\ingsoft\allpay\services\MunicipalidadService.class
 com\ingsoft\allpay\model\Municipalidad_.class
 com\ingsoft\allpay\model\DPI.class
 com\ingsoft\allpay\SwaggerConfig.class
+com\ingsoft\allpay\model\HistorialCobros_.class
+com\ingsoft\allpay\model\ServiciosPrestados_.class
 com\ingsoft\allpay\model\PIB.class
 com\ingsoft\allpay\methods\LinealRegresion.class
 com\ingsoft\allpay\methods\MinCuadrados.class
+com\ingsoft\allpay\model\DetalleServicio_.class
+com\ingsoft\allpay\model\CiudadanoActual_.class
 com\ingsoft\allpay\controllers\MainController.class
 com\ingsoft\allpay\model\ServiciosMuni.class
 com\ingsoft\allpay\model\Departamento_.class
+com\ingsoft\allpay\model\HistoricoTarifas_.class
 com\ingsoft\allpay\model\Municipio_.class

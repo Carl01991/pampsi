@@ -1,5 +1,6 @@
 package com.ingsoft.allpay.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ingsoft.allpay.dao.ResponseGeneric;
 import com.ingsoft.allpay.model.ServiciosPrestados;
+import com.ingsoft.allpay.resultmodel.ServiciosPrestadosResult;
 import com.ingsoft.allpay.services.ServiciosPrestadosService;
 
 @RestController
@@ -20,13 +22,35 @@ public class ServiciosMuniGuateController {
 	@Autowired ServiciosPrestadosService serviciosPrestadosService;
 	
 	@GetMapping(value = "/getqr")
-	 public ResponseGeneric<ServiciosPrestados> getServicios(){
+	 public ResponseGeneric<ServiciosPrestadosResult> getServicios(){
 		
-		ResponseGeneric<ServiciosPrestados> response = new ResponseGeneric<ServiciosPrestados>();
+		ResponseGeneric<ServiciosPrestadosResult> response = new ResponseGeneric<ServiciosPrestadosResult>();
+
+		
+
+		
+		
 		
 		try
 		{
-			response.setResponse(serviciosPrestadosService.findByDepartamentoIdDepartamentoAndTipo(1, "gua"));
+			
+			
+			List<ServiciosPrestadosResult> result = new  ArrayList<ServiciosPrestadosResult>();
+
+			for(ServiciosPrestados servicios : serviciosPrestadosService.findByDepartamentoIdDepartamentoAndTipo(1, "gua")) {
+				
+				ServiciosPrestadosResult serviciosResult = new ServiciosPrestadosResult();
+				
+				serviciosResult.setDescripcionServicio(servicios.getDescripcionServicio());
+				serviciosResult.setEstado(servicios.getEstado());
+				serviciosResult.setIdServicio(servicios.getIdServicio());
+				serviciosResult.setNombreServicio(servicios.getNombreServicio());
+				serviciosResult.setTipo(servicios.getTipo());
+				
+				result.add(serviciosResult);
+			}
+			response.setResponse(result);
+			
 			response.setCode("1");
 			response.setMessage("Transaccion correcta");
 			return response;
