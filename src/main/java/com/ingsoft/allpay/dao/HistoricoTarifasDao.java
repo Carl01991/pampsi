@@ -8,11 +8,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
-import com.ingsoft.allpay.model.ServiciosPrestados;
-import com.ingsoft.allpay.resultmodel.ServiciosPrestadosResult;
-import com.ingsoft.allpay.services.ServiciosPrestadosService;
+import com.ingsoft.allpay.model.HistoricoTarifas;
+import com.ingsoft.allpay.resultmodel.HistoricoTarifasResultmodel;
+import com.ingsoft.allpay.services.HistoricoTarifasService;
 
-public class ServiciosPrestadosDao implements ServiciosPrestadosService{
+public class HistoricoTarifasDao implements HistoricoTarifasService{
 
 	@Override
 	public void deleteAllInBatch() {
@@ -21,37 +21,37 @@ public class ServiciosPrestadosDao implements ServiciosPrestadosService{
 	}
 
 	@Override
-	public void deleteInBatch(Iterable<ServiciosPrestados> arg0) {
+	public void deleteInBatch(Iterable<HistoricoTarifas> arg0) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public List<ServiciosPrestados> findAll() {
+	public List<HistoricoTarifas> findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<ServiciosPrestados> findAll(Sort arg0) {
+	public List<HistoricoTarifas> findAll(Sort arg0) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<ServiciosPrestados> findAll(Iterable<Serializable> arg0) {
+	public List<HistoricoTarifas> findAll(Iterable<Serializable> arg0) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends ServiciosPrestados> List<S> findAll(Example<S> arg0) {
+	public <S extends HistoricoTarifas> List<S> findAll(Example<S> arg0) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends ServiciosPrestados> List<S> findAll(Example<S> arg0, Sort arg1) {
+	public <S extends HistoricoTarifas> List<S> findAll(Example<S> arg0, Sort arg1) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -63,37 +63,37 @@ public class ServiciosPrestadosDao implements ServiciosPrestadosService{
 	}
 
 	@Override
-	public ServiciosPrestados getOne(Serializable arg0) {
+	public HistoricoTarifas getOne(Serializable arg0) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends ServiciosPrestados> List<S> save(Iterable<S> arg0) {
+	public <S extends HistoricoTarifas> List<S> save(Iterable<S> arg0) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends ServiciosPrestados> S saveAndFlush(S arg0) {
+	public <S extends HistoricoTarifas> S saveAndFlush(S arg0) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Page<ServiciosPrestados> findAll(Pageable pageable) {
+	public Page<HistoricoTarifas> findAll(Pageable pageable) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends ServiciosPrestados> S save(S entity) {
+	public <S extends HistoricoTarifas> S save(S entity) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ServiciosPrestados findOne(Serializable id) {
+	public HistoricoTarifas findOne(Serializable id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -117,13 +117,13 @@ public class ServiciosPrestadosDao implements ServiciosPrestadosService{
 	}
 
 	@Override
-	public void delete(ServiciosPrestados entity) {
+	public void delete(HistoricoTarifas entity) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void delete(Iterable<? extends ServiciosPrestados> entities) {
+	public void delete(Iterable<? extends HistoricoTarifas> entities) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -135,35 +135,33 @@ public class ServiciosPrestadosDao implements ServiciosPrestadosService{
 	}
 
 	@Override
-	public <S extends ServiciosPrestados> S findOne(Example<S> example) {
+	public <S extends HistoricoTarifas> S findOne(Example<S> example) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends ServiciosPrestados> Page<S> findAll(Example<S> example, Pageable pageable) {
+	public <S extends HistoricoTarifas> Page<S> findAll(Example<S> example, Pageable pageable) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public <S extends ServiciosPrestados> long count(Example<S> example) {
+	public <S extends HistoricoTarifas> long count(Example<S> example) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public <S extends ServiciosPrestados> boolean exists(Example<S> example) {
+	public <S extends HistoricoTarifas> boolean exists(Example<S> example) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public List<ServiciosPrestadosResult> findByDepartamentoIdDepartamentoAndTipo(Integer departamento, String tipo) {
+	public List<HistoricoTarifasResultmodel> findByPeriodoActualAndIdServicio(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-
 
 }

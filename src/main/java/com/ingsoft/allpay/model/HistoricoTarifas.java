@@ -22,6 +22,8 @@ public class HistoricoTarifas {
 	private Integer idHistoricoTarifa;
 	@Column(name = "periodo")
 	private Integer periodo;
+	@Column(name = "descripcion")
+	private String descripcion;
 	@Column(name = "tarifa")
 	private Double tarifa;
 	@Column(name = "estado")
@@ -32,6 +34,12 @@ public class HistoricoTarifas {
 	private DetalleServicio detalleServicio;
 	
 	
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
 	public Integer getIdHistoricoTarifa() {
 		return idHistoricoTarifa;
 	}

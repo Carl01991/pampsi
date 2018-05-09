@@ -25,9 +25,9 @@ public class CiudadanoActual {
 	private String apellidos;
 	@Column(name = "direccion")
 	private String direccion;
-	@OneToMany(fetch = FetchType.EAGER, mappedBy="ciudadano")
-	@JsonManagedReference
-	Set<HistorialCobros> cobros = new HashSet<HistorialCobros>();
+//	@OneToMany(fetch = FetchType.EAGER, mappedBy="ciudadano")
+//	@JsonManagedReference
+//	Set<HistorialCobros> cobros = new HashSet<HistorialCobros>();
 	
 	
 	public String getCui() {
@@ -54,12 +54,12 @@ public class CiudadanoActual {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-	public Set<HistorialCobros> getCobros() {
-		return cobros;
-	}
-	public void setCobros(Set<HistorialCobros> cobros) {
-		this.cobros = cobros;
-	}
+//	public Set<HistorialCobros> getCobros() {
+//		return cobros;
+//	}
+//	public void setCobros(Set<HistorialCobros> cobros) {
+//		this.cobros = cobros;
+//	}
 	
 	
 

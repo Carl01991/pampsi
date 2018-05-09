@@ -2,7 +2,7 @@ package com.ingsoft.allpay.resultmodel;
 
 public class ServiciosPrestadosResult {
 	
-	private int idServicio;
+	private Integer idServicio;
 	private String nombreServicio;
 	private String descripcionServicio;
 	private Integer estado;
@@ -38,6 +38,15 @@ public class ServiciosPrestadosResult {
 		return tipo;
 	}
 	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+	public ServiciosPrestadosResult(Integer idServicio, String nombreServicio, String descripcionServicio,
+			Integer estado, String tipo) {
+		super();
+		this.idServicio = idServicio;
+		this.nombreServicio = nombreServicio;
+		this.descripcionServicio = descripcionServicio;
+		this.estado = estado;
 		this.tipo = tipo;
 	}
 

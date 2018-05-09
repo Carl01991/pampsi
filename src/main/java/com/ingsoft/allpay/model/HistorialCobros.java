@@ -28,10 +28,12 @@ public class HistorialCobros {
 	private Double valor;
 	@Column(name = "pagado")
 	private Integer pagado;
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JsonBackReference
-	@JoinColumn(name="id_ciudadano")
-	private CiudadanoActual ciudadano;
+	@Column(name = "documento_identificacion")
+	private String documentoIdentificacion;
+//	@ManyToOne(fetch = FetchType.EAGER)
+//	@JsonBackReference
+//	@JoinColumn(name="id_ciudadano")
+//	private CiudadanoActual ciudadano;
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JsonBackReference
 	@JoinColumn(name="id_detalle_servicio")
@@ -62,17 +64,24 @@ public class HistorialCobros {
 	public void setPagado(Integer pagado) {
 		this.pagado = pagado;
 	}
-	public CiudadanoActual getCiudadano() {
-		return ciudadano;
-	}
-	public void setCiudadano(CiudadanoActual ciudadano) {
-		this.ciudadano = ciudadano;
-	}
+//	public CiudadanoActual getCiudadano() {
+//		return ciudadano;
+//	}
+//	public void setCiudadano(CiudadanoActual ciudadano) {
+//		this.ciudadano = ciudadano;
+//	}
 	public DetalleServicio getDetalleServicio() {
 		return detalleServicio;
 	}
 	public void setDetalleServicio(DetalleServicio detalleServicio) {
 		this.detalleServicio = detalleServicio;
+	}
+	
+	public String getDocumentoIdentificacion() {
+		return documentoIdentificacion;
+	}
+	public void setDocumentoIdentificacion(String documentoIdentificacion) {
+		this.documentoIdentificacion = documentoIdentificacion;
 	}
 	
 	
