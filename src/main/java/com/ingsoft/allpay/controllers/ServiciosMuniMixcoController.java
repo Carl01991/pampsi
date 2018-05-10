@@ -27,10 +27,10 @@ import com.ingsoft.allpay.services.ServiciosPrestadosService;
 
 
 @RestController
-@RequestMapping(value = "/muniMixco")
-public class ServiciosMuniGuateController {
+@RequestMapping(value = "/muniGuatemala")
+public class ServiciosMuniMixcoController {
 	
-	private static Logger logger = LoggerFactory.getLogger(ServiciosMuniGuateController.class);
+	private static Logger logger = LoggerFactory.getLogger(ServiciosMuniMixcoController.class);
 	@Autowired ServiciosPrestadosService serviciosPrestadosService;
 	@Autowired DetalleServiciosService detalleServiciosService;
 	@Autowired HistoricoTarifasService historicoTarifasService;
@@ -42,7 +42,7 @@ public class ServiciosMuniGuateController {
 		ResponseGeneric<ServiciosPrestadosResult> response = new ResponseGeneric<ServiciosPrestadosResult>();
 		try
 		{
-			response.setResponse(serviciosPrestadosService.findByDepartamentoIdDepartamentoAndTipo(2, "gua"));;			
+			response.setResponse(serviciosPrestadosService.findByDepartamentoIdDepartamentoAndTipo(1, "gua"));;			
 			response.setCode("1");
 			response.setMessage("Transaccion correcta");
 			return response;

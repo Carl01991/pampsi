@@ -34,6 +34,12 @@ public class HistorialCobros {
 //	@JsonBackReference
 //	@JoinColumn(name="id_ciudadano")
 //	private CiudadanoActual ciudadano;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JsonBackReference
+	@JoinColumn(name="id_tarifa")
+	private HistoricoTarifas tarifaAplicada;
+	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JsonBackReference
 	@JoinColumn(name="id_detalle_servicio")
@@ -82,6 +88,12 @@ public class HistorialCobros {
 	}
 	public void setDocumentoIdentificacion(String documentoIdentificacion) {
 		this.documentoIdentificacion = documentoIdentificacion;
+	}
+	public HistoricoTarifas getTarifaAplicada() {
+		return tarifaAplicada;
+	}
+	public void setTarifaAplicada(HistoricoTarifas tarifaAplicada) {
+		this.tarifaAplicada = tarifaAplicada;
 	}
 	
 	

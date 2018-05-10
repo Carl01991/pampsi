@@ -1,6 +1,6 @@
 package com.ingsoft.allpay.resultmodel;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class HistoricoPorCiudadano {
 	private Integer id;
@@ -35,6 +35,11 @@ public class HistoricoPorCiudadano {
 		this.valorPagar = valorPagar;
 	}
 	
+	public HistoricoPorCiudadano(Integer id, Date fecha) {
+		super();
+		this.id = id;
+		this.fecha = fecha;
+	}
 	
 
 }

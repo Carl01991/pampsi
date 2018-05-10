@@ -4,17 +4,17 @@ import java.util.List;
 
 public class HistoricoGeneralPorCiudadano {
 	private List<HistoricoPorCiudadano> historico;
-	private Float total;
+	private Double total;
 	public List<HistoricoPorCiudadano> getHistorico() {
 		return historico;
 	}
 	public void setHistorico(List<HistoricoPorCiudadano> historico) {
 		this.historico = historico;
 	}
-	public Float getTotal() {
+	public Double getTotal() {
 		return total;
 	}
-	public void setTotal(Float total) {
+	public void setTotal(Double total) {
 		this.total = total;
 	}
 	

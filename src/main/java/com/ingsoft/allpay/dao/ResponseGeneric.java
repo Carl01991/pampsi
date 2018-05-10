@@ -3,6 +3,8 @@ package com.ingsoft.allpay.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ingsoft.allpay.resultmodel.HistoricoGeneralPorCiudadano;
+
 public class ResponseGeneric<T> {
 	private String code;
 	private String message;
@@ -25,7 +27,7 @@ public class ResponseGeneric<T> {
 	public void setResponse(List<T> response) {
 		this.response = response;
 	}
-	
+
 	
 	
 
