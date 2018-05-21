@@ -3,7 +3,6 @@ package com.ingsoft.allpay.controllers;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,11 +17,8 @@ import com.ingsoft.allpay.dao.ResponseGeneric;
 import com.ingsoft.allpay.dao.ResponseGenricValue;
 import com.ingsoft.allpay.model.HistorialCobros;
 import com.ingsoft.allpay.model.RegistroDePagos;
-import com.ingsoft.allpay.model.ServiciosPrestados;
-import com.ingsoft.allpay.resultmodel.DetalleServiciosResultmodel;
 import com.ingsoft.allpay.resultmodel.HistoricoGeneralPorCiudadano;
 import com.ingsoft.allpay.resultmodel.HistoricoPorCiudadano;
-import com.ingsoft.allpay.resultmodel.HistoricoTarifasResultmodel;
 import com.ingsoft.allpay.resultmodel.ServiciosPrestadosResult;
 import com.ingsoft.allpay.services.DetalleServiciosService;
 import com.ingsoft.allpay.services.HistoricoPorUsuarioService;
@@ -30,17 +26,17 @@ import com.ingsoft.allpay.services.HistoricoTarifasService;
 import com.ingsoft.allpay.services.RegistroDePagosService;
 import com.ingsoft.allpay.services.ServiciosPrestadosService;
 
-
 @RestController
-@RequestMapping(value = "/muniGuate")
-public class ServiciosMuniGuateController {
-	
-	private static Logger logger = LoggerFactory.getLogger(ServiciosMuniGuateController.class);
+@RequestMapping(value = "/serviciosEegsa")
+public class ServiciosEegsa {
+
+	private static Logger logger = LoggerFactory.getLogger(ServiciosMuniMixcoController.class);
 	@Autowired ServiciosPrestadosService serviciosPrestadosService;
 	@Autowired DetalleServiciosService detalleServiciosService;
 	@Autowired HistoricoTarifasService historicoTarifasService;
 	@Autowired HistoricoPorUsuarioService historicoUsuario;
 	@Autowired RegistroDePagosService registroPagosService;
+	
 	
 	@GetMapping(value = "/getServicio")
 	 public ResponseGeneric<ServiciosPrestadosResult> getServicios(){
@@ -59,49 +55,10 @@ public class ServiciosMuniGuateController {
 			return response;
 		}
 	}
-	@GetMapping(value = "/getListaServicios")
-	public ResponseGeneric<DetalleServiciosResultmodel> getListServicios(){
-		
-		ResponseGeneric<DetalleServiciosResultmodel> response = new ResponseGeneric<DetalleServiciosResultmodel>();
-		try
-		{
-			response.setResponse(detalleServiciosService.findByServicio(1));
-			response.setCode("1");
-			response.setMessage("Transaccion correcta");
-			return response;
-		}catch(Exception e)
-		{
-			response.setCode("0");
-			response.setMessage("Error al obtener servicios muni guate");
-			return response;
-			
-		}
-	}
-	@GetMapping(value = "/getTarifaActivaServicio")
-	public ResponseGeneric<HistoricoTarifasResultmodel> getListaTarifasActivas(@RequestParam String idServicio){
-		
-		ResponseGeneric<HistoricoTarifasResultmodel> response = new ResponseGeneric<HistoricoTarifasResultmodel>();
-		try
-		{
-			Integer id = Integer.parseInt(idServicio);
-			response.setResponse(historicoTarifasService.findByPeriodoActualAndIdServicio(id));
-			response.setCode("1");
-			response.setMessage("Transaccion correcta");
-			return response;
-		}catch(Exception e)
-		{
-			response.setCode("0");
-			response.setMessage("Error al obtener servicios muni guate");
-			return response;
-			
-		}
-	}
-	
-
 	
 	
-	@PostMapping(value = "/getSaldoUsuario")
-	public ResponseGeneric registrarPago(@RequestParam String idServicio, @RequestParam String documento){
+	@GetMapping(value = "/getSaldoUsuario")
+	public ResponseGeneric<HistoricoGeneralPorCiudadano> getSaldoUsuario(@RequestParam String idServicio, @RequestParam String documento){
 		
 		ResponseGeneric<HistoricoGeneralPorCiudadano> response = new ResponseGeneric<HistoricoGeneralPorCiudadano>();
 		try
@@ -131,6 +88,8 @@ public class ServiciosMuniGuateController {
 			
 		}
 	}
+	
+	
 	
 	@PostMapping(value = "/savePago")
 	public ResponseGenricValue registrarPago(@RequestParam String documentoCobro, @RequestParam String documento, @RequestParam String valor){
@@ -162,5 +121,5 @@ public class ServiciosMuniGuateController {
 			
 		}
 	}
-
+	
 }

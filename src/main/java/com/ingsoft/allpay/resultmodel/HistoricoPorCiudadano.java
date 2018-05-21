@@ -3,19 +3,20 @@ package com.ingsoft.allpay.resultmodel;
 import java.util.Date;
 
 public class HistoricoPorCiudadano {
-	private Integer id;
+	private Integer docuemntoDeCobro;
 	private Date fecha;
 	private Double valorPagar;
-	public Integer getId() {
-		return id;
+	
+	
+	
+	
+	
+	public Integer getDocuemntoDeCobro() {
+		return docuemntoDeCobro;
 	}
-	public void setId(Integer id) {
-		this.id = id;
+	public void setDocuemntoDeCobro(Integer docuemntoDeCobro) {
+		this.docuemntoDeCobro = docuemntoDeCobro;
 	}
-	
-	
-	
-	
 	public Date getFecha() {
 		return fecha;
 	}
@@ -28,16 +29,16 @@ public class HistoricoPorCiudadano {
 	public void setValorPagar(Double valorPagar) {
 		this.valorPagar = valorPagar;
 	}
-	public HistoricoPorCiudadano(Integer id, Date fecha, Double valorPagar) {
+	public HistoricoPorCiudadano(Integer docuemntoDeCobro, Date fecha, Double valorPagar) {
 		super();
-		this.id = id;
+		this.docuemntoDeCobro = docuemntoDeCobro;
 		this.fecha = fecha;
 		this.valorPagar = valorPagar;
 	}
 	
-	public HistoricoPorCiudadano(Integer id, Date fecha) {
+	public HistoricoPorCiudadano(Integer docuemntoDeCobro, Date fecha) {
 		super();
-		this.id = id;
+		this.docuemntoDeCobro = docuemntoDeCobro;
 		this.fecha = fecha;
 	}
 	
