@@ -1,6 +1,7 @@
 package com.ingsoft.allpay.dao;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.domain.Example;
@@ -160,6 +161,12 @@ public class HistoricoPorUsuarioDao implements HistoricoPorUsuarioService{
 
 	@Override
 	public List<HistoricoPorCiudadano> findByHistoricoUser(Integer idSerivicio, String documentoIdentificacion) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<HistorialCobros> findExistAnterior(String documentoIdentificacion, Date fecha, Integer idServicio) {
 		// TODO Auto-generated method stub
 		return null;
 	}

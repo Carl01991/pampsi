@@ -1,6 +1,7 @@
 package com.ingsoft.allpay.services;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,5 +18,8 @@ public interface HistoricoPorUsuarioService extends JpaRepository<HistorialCobro
 	@Query("select new com.ingsoft.allpay.resultmodel.HistoricoPorCiudadano(hc.idHistoricoCobros as docuemntoDeCobro, hc.fecha as fecha, hc.valor as valorPagar) "
 			+ " from HistorialCobros hc where hc.pagado=0 and hc.fecha<=CURRENT_DATE() and hc.detalleServicio.idDetalleServicio=?1 and hc.documentoIdentificacion=?2")
 	List<HistoricoPorCiudadano> findByHistoricoUser(Integer idSerivicio, String documentoIdentificacion);
+	
+	@Query("Select hc from HistorialCobros hc where hc.documentoIdentificacion=?1 and hc.fecha<=?2 and hc.pagado=0 and hc.detalleServicio.idDetalleServicio=?3")
+	List<HistorialCobros> findExistAnterior(String documentoIdentificacion, Date fecha, Integer idServicio);
 
 }

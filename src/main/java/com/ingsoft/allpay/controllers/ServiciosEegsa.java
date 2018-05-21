@@ -92,30 +92,42 @@ public class ServiciosEegsa {
 	
 	
 	@PostMapping(value = "/savePago")
-	public ResponseGenricValue registrarPago(@RequestParam String documentoCobro, @RequestParam String documento, @RequestParam String valor){
+	public ResponseGenricValue registrarPago(@RequestParam String documentoCobro, @RequestParam String documentoIdentificacion, @RequestParam String valor){
 		
 		ResponseGenricValue response = new ResponseGenricValue();
 		try
 		{
-			Double total =(double) 0;
+			
 			RegistroDePagos pago = new RegistroDePagos();
-			pago.setDocumentoIdentificacion(documento);
+			pago.setDocumentoIdentificacion(documentoIdentificacion);
 			pago.setIdHistoricoCobro(Integer.parseInt(documentoCobro));
 			pago.setValor(Float.parseFloat(valor));
 			pago.setFecha(new Date());
-			registroPagosService.save(pago);
+			HistorialCobros actual = historicoUsuario.findOne(Integer.parseInt(documentoCobro));
+			logger.info("ID DE ACTUAL "+actual.getDetalleServicio().getIdDetalleServicio());
+			List<HistorialCobros> anteriores = historicoUsuario.findExistAnterior(documentoIdentificacion, actual.getFecha(), actual.getDetalleServicio().getIdDetalleServicio());
+			if(!anteriores.isEmpty())
+			{
+				response.setCode("0");
+				response.setMessage("Existe un pago anterior que debe solventar antes de realizar esta transaccion");
+			}
+			else
+			{
+				registroPagosService.save(pago);
+				
+				HistorialCobros actualizar = historicoUsuario.findOne(Integer.parseInt(documentoCobro));
+				actualizar.setPagado(1);
+				historicoUsuario.save(actualizar);
+				response.setCode("1");
+				response.setMessage("Transaccion correcta");
+			}
 			
-			HistorialCobros actualizar = historicoUsuario.findOne(Integer.parseInt(documentoCobro));
-			actualizar.setPagado(1);
-			historicoUsuario.save(actualizar);
-			response.setCode("1");
-			response.setMessage("Transaccion correcta");
 			return response;
 		}catch(Exception e)
 		{
 			response.setCode("0");
 			response.setMessage("Error al obtener servicios muni guate");
-			logger.info("error "+e);
+			logger.info("error ",e);
 	
 			return response;
 			
