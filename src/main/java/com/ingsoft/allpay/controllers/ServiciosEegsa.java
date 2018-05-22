@@ -30,7 +30,7 @@ import com.ingsoft.allpay.services.ServiciosPrestadosService;
 @RequestMapping(value = "/serviciosEegsa")
 public class ServiciosEegsa {
 
-	private static Logger logger = LoggerFactory.getLogger(ServiciosMuniMixcoController.class);
+	private static Logger logger = LoggerFactory.getLogger(ServiciosEegsa.class);
 	@Autowired ServiciosPrestadosService serviciosPrestadosService;
 	@Autowired DetalleServiciosService detalleServiciosService;
 	@Autowired HistoricoTarifasService historicoTarifasService;

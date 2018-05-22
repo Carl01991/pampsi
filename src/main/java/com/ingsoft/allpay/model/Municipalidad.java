@@ -46,6 +46,9 @@ public class Municipalidad {
 	@JoinColumn(name = "id_municipio")
 	private Municipio municipio;
 	
+
+	
+	
 	public Integer getIdMunicipalidad() {
 		return idMunicipalidad;
 	}
@@ -88,6 +91,7 @@ public class Municipalidad {
 	public void setMunicipio(Municipio municipio) {
 		this.municipio = municipio;
 	}
+
 	
 	
 	

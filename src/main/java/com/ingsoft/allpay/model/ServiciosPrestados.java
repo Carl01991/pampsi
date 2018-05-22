@@ -44,6 +44,9 @@ public class ServiciosPrestados {
 	@JsonManagedReference
 	Set<DetalleServicio> servicioDetalle = new HashSet<DetalleServicio>();
 	
+	@Column(name ="no_cuenta_bancaria")
+	private String cuentaBancaria;
+	
 	public String getTipo() {
 		return tipo;
 	}
@@ -87,6 +90,12 @@ public class ServiciosPrestados {
 	}
 	public void setServicioDetalle(Set<DetalleServicio> servicioDetalle) {
 		this.servicioDetalle = servicioDetalle;
+	}
+	public String getCuentaBancaria() {
+		return cuentaBancaria;
+	}
+	public void setCuentaBancaria(String cuentaBancaria) {
+		this.cuentaBancaria = cuentaBancaria;
 	}
 	
 	
