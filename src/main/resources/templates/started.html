@@ -2,380 +2,399 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
 
-    <title>Pamsip®</title>
+<title>Pamsip®</title>
 
-    <th:block th:include="fragments/headerinc :: head"></th:block> 
+<th:block th:include="fragments/headerinc :: head"></th:block>
 
-				<link href="../static/css/prettify.css" th:href="@{/css/prettify.css}" rel="stylesheet">
-				
-		<link href="../static/css/smartadmin-production-plugins.min.css" th:href="@{/css/smartadmin-production-plugins.min.css}" rel="stylesheet">
-		<script src="../static/js/prettify.js" th:src="@{/js/prettify.js}"></script>
-		<script src="../static/js/jquery.bootstrap.wizard.js" th:src="@{/js/jquery.bootstrap.wizard.min.js}"></script>
-		<script src="js/vectormap/jquery-jvectormap-1.2.2.min.js" th:src="@{/js/vectormap/jquery-jvectormap-1.2.2.min.js}"></script>
-		<script src="js/vectormap/jquery-jvectormap-world-mill-en.js" th:src="@{/js/vectormap/jquery-jvectormap-world-mill-en.js}"></script>
-		<script src="js/plugin/flot/jquery.flot.cust.min.js"></script>
-		<script src="js/plugin/flot/jquery.flot.resize.min.js"></script>
-		<script src="js/plugin/flot/jquery.flot.fillbetween.min.js"></script>
-		<script src="js/plugin/flot/jquery.flot.orderBar.min.js"></script>
-		<script src="js/plugin/flot/jquery.flot.pie.min.js"></script>
-		<script src="js/plugin/flot/jquery.flot.time.min.js"></script>
-		<script src="js/plugin/flot/jquery.flot.tooltip.min.js"></script>
-		
+<link href="../static/css/prettify.css" th:href="@{/css/prettify.css}"
+	rel="stylesheet">
+
+<link href="../static/css/smartadmin-production-plugins.min.css"
+	th:href="@{/css/smartadmin-production-plugins.min.css}"
+	rel="stylesheet">
+<script src="../static/js/prettify.js" th:src="@{/js/prettify.js}"></script>
+<script src="../static/js/jquery.bootstrap.wizard.js"
+	th:src="@{/js/jquery.bootstrap.wizard.min.js}"></script>
+<script src="js/vectormap/jquery-jvectormap-1.2.2.min.js"
+	th:src="@{/js/vectormap/jquery-jvectormap-1.2.2.min.js}"></script>
+<script src="js/vectormap/jquery-jvectormap-world-mill-en.js"
+	th:src="@{/js/vectormap/jquery-jvectormap-world-mill-en.js}"></script>
+<script src="js/plugin/flot/jquery.flot.cust.min.js"></script>
+<script src="js/plugin/flot/jquery.flot.resize.min.js"></script>
+<script src="js/plugin/flot/jquery.flot.fillbetween.min.js"></script>
+<script src="js/plugin/flot/jquery.flot.orderBar.min.js"></script>
+<script src="js/plugin/flot/jquery.flot.pie.min.js"></script>
+<script src="js/plugin/flot/jquery.flot.time.min.js"></script>
+<script src="js/plugin/flot/jquery.flot.tooltip.min.js"></script>
+
 <!-- <script type="text/javascript" th:src="@{/js/jquery-1.4.2.min.js}"></script> -->
 <!-- <script type="text/javascript" th:src="@{/js/jquery-ui-1.8.custom.min.js}"></script> -->
 <!-- <script type="text/javascript" th:src="@{/js/jquery.cookie.js}"></script> -->
 </head>
 <body>
-<div class="container" style="width: 100%">
-    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
-</div>
-<div class="container">
-    <h1>Afiliate Facilmente</h1>
+	<div class="container" style="width: 100%">
+		<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+	</div>
+	<div class="container">
+		<h1>Afiliate Facilmente</h1>
 
-    <div id="rootwizard">
-    	<div class="navbar">
-    	  <div class="navbar-inner">
-    	    <div class="container">
-    	<ul>
-    	  	<li><a href="#tab1" data-toggle="tab">Ingresa tus Datos</a></li>
-    		<li><a href="#tab2" data-toggle="tab">Verifica tus Datos</a></li>
-    		<li><a href="#tab3" data-toggle="tab">Creando tu usuario</a></li>
+		<div id="rootwizard">
+			<div class="navbar">
+				<div class="navbar-inner">
+					<div class="container">
+						<ul>
+							<li><a href="#tab1" data-toggle="tab">Ingresa tus Datos</a></li>
+							<li><a href="#tab2" data-toggle="tab">Verifica tus Datos</a></li>
+							<li><a href="#tab3" data-toggle="tab">Creando tu usuario</a></li>
 
-    	</ul>
-    	 </div>
-    	  </div>
-    	</div>
-        <div id="bar" class="progress">
-          <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
-        </div>
-    	<div class="tab-content">
-    	    <div class="tab-pane" id="tab1">
-													<div class="row">
-																<div class="col-sm-6">
-																	<div class="form-group">
-									<form action="/addCiudadano" method="POST">
-			CUI <input type="text" id="cui" name="cui" /><br />
-			Primer Nombre <input type="text" id="primerNombre" name="primerNombre" /><br />
-			Segundo Nombre <input type="text" id="segundoNombre" name="segundoNombre" /><br />
-			Primer Apellido <input type="text" id="primerApellido" name="primerApellido" /><br />
-			Segundo Apellido <input type="text" id="segundoApellido" name="segundoApellido" /><br />
-			 <select multiple="multiple" id="list" name="list" >
- 				 <option name="nombre" value="iusi">IUSI</option>
-  				 <option name="nombre" value="isr">ISR</option>
-			</select> 
-			<input type="submit" />
-		</form>
-																	</div>
-																</div>
-															</div>
-    	    </div>
-    	    <div class="tab-pane" id="tab2">
-													<div class="row">
-																<div class="col-sm-6">
-																	<div class="form-group">
-																		<div class="input-group">
-																			<span class="input-group-addon"><i class="fa fa-flag fa-lg fa-fw"></i>Tus Datos</span>
-																
-															
-																		</div>
-																	</div>
-																</div>
-															</div>
-
-
-
-    	    </div>
-    		<div class="tab-pane" id="tab3">
-    		
-    														<div class="row">
-																<div class="col-sm-6">
-																	<div class="form-group">
-																		<div class="input-group">
-																			<span class="input-group-addon"><i class="fa fa-flag fa-lg fa-fw"></i>Verifica tus Datos</span>
-																	
-																		</div>
-																	</div>
-																				<div id="example-2-3">
-
-
+						</ul>
+					</div>
+				</div>
 			</div>
-																</div>
-															</div>
-    	    </div>
-    		<div class="tab-pane" id="tab4">
-    		
-    		    											<div class="row">
-																<div class="col-sm-6">
-																	<div class="form-group">
-																		<div class="input-group">
-																			<span class="input-group-addon"><i class="fa fa-flag fa-lg fa-fw"></i>Selecciona las variables que desee aplicar</span>
-																			<select name="listvar" id="listvar" class="form-control input-lg" multiple="multiple">	
-
-																			</select>
-																		</div>
-																	</div>
-																</div>
-															</div>
-
-
-    	    </div>
-    		<div class="tab-pane" id="tab5">
-   		    											<div class="row">
-																<div class="col-sm-12">
-																Pais Seleccionado
-																<input  class="form-control input-lg" id="scountry" type="text" name="scountry" disabled="disabled"  />
-																	<div class="form-group">
-																		<div class="input-group">
-																		  		
-																		</div>
-																	</div>
-																</div>
-															</div>
-																									<div class="  widget-body no-padding" >
-
-										<div id="saleschart" class="chart" style="width:100%;height:400px"></div>
-
-									</div>
-				
-
-    	    </div>
-    	        		<div class="tab-pane" id="tab6">
-    	        		<div class="content">
-							<div id="vector-map" class="vector-map"></div>
-							<div id="heat-fill">
-							<span class="fill-a">0</span>
-							<span class="fill-b" id="maptottalleads">6222</span>
+			<div id="bar" class="progress">
+				<div class="progress-bar" role="progressbar" aria-valuenow="0"
+					aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+			</div>
+			<div class="tab-content">
+				<div class="tab-pane" id="tab1">
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<form action="/addCiudadano" method="POST">
+									CUI <input type="text" id="cui" name="cui" /><br /> Primer
+									Nombre <input type="text" id="primerNombre" name="primerNombre" /><br />
+									Segundo Nombre <input type="text" id="segundoNombre"
+										name="segundoNombre" /><br /> Primer Apellido <input
+										type="text" id="primerApellido" name="primerApellido" /><br />
+									Segundo Apellido <input type="text" id="segundoApellido"
+										name="segundoApellido" /><br /> <select multiple="multiple"
+										id="list" name="list">
+										<option name="nombre" value="iusi">IUSI</option>
+										<option name="nombre" value="isr">ISR</option>
+									</select> <input type="submit" />
+								</form>
 							</div>
-						</div>									
-									
-
-    	    </div>
-    		
-    		<ul class="pager wizard">
-    			<li class="previous first" style="display:none;"><a href="#">First</a></li>
-    			<li class="previous"><a href="#">Anterior</a></li>
-    			<li class="next last" style="display:none;"><a href="#">Last</a></li>
-    		  	<li class="next"><a href="#">Siguiente</a></li>
-    		</ul>
-    	</div>
-    </div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane" id="tab2">
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="fa fa-flag fa-lg fa-fw"></i>Tus Datos</span>
 
 
-
-
-
-
-</div>
-
-<script type="text/javascript">
+								</div>
+							</div>
+						</div>
+					</div>
 
 
 
-$('#vars').on('change', function() {
+				</div>
+				<div class="tab-pane" id="tab3">
 
-    $.ajax({url: "vars", success: function(result){
-    	 $("#listvar option").remove();
-    	$.each(result, function(i, item) {
-    		  $("#listvar").append( $("<option />").val(item).text(item) );
- 																		
-    		});
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="fa fa-flag fa-lg fa-fw"></i>Verifica tus Datos</span>
 
-    }});
-	
-	
-	
-	})
-	
-	
-    function graph() {
-    	
-	var scountry = $('#country option:selected').text();
-	var url = "map?name="+scountry;
-    	$.get( url, function( data ) {
-	/* chart colors default */
-	var $chrt_border_color = "#efefef";
-	var $chrt_grid_color = "#DDD"
-	var $chrt_main = "#E24913";
-	/* red       */
-	var $chrt_second = "#808080";
-	/* blue      */
-	var $chrt_third = "#FF9F01";
-	/* orange    */
-	var $chrt_fourth = "#7e9d3a";
-	/* green     */
-	var $chrt_fifth = "#BD362F";
-	/* dark red  */
-	var $chrt_mono = "#000";
-    
-	if ($("#saleschart").length) {
-		var d = data;
+								</div>
+							</div>
+							<div id="example-2-3"></div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane" id="tab4">
 
-		for (var i = 0; i < d.length; ++i)
-			d[i][0] += 60 * 60 * 1000;
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="fa fa-flag fa-lg fa-fw"></i>Selecciona las variables
+										que desee aplicar</span> <select name="listvar" id="listvar"
+										class="form-control input-lg" multiple="multiple">
 
-		function weekendAreas(axes) {
-			var markings = [];
-			var d = new Date(axes.xaxis.min);
-			// go to the first Saturday
-			d.setUTCDate(d.getUTCDate() - ((d.getUTCDay() + 1) % 7))
-			d.setUTCSeconds(0);
-			d.setUTCMinutes(0);
-			d.setUTCHours(0);
-			var i = d.getTime();
-			do {
-				// when we don't set yaxis, the rectangle automatically
-				// extends to infinity upwards and downwards
-				markings.push({
-					xaxis : {
-						from : i,
-						to : i + 2 * 24 * 60 * 60 * 1000
-					}
-				});
-				i += 7 * 24 * 60 * 60 * 1000;
-			} while (i < axes.xaxis.max);
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
 
-			return markings;
+
+				</div>
+				<div class="tab-pane" id="tab5">
+					<div class="row">
+						<div class="col-sm-12">
+							Pais Seleccionado <input class="form-control input-lg"
+								id="scountry" type="text" name="scountry" disabled="disabled" />
+							<div class="form-group">
+								<div class="input-group"></div>
+							</div>
+						</div>
+					</div>
+					<div class="  widget-body no-padding">
+
+						<div id="saleschart" class="chart"
+							style="width: 100%; height: 400px"></div>
+
+					</div>
+
+
+				</div>
+				<div class="tab-pane" id="tab6">
+					<div class="content">
+						<div id="vector-map" class="vector-map"></div>
+						<div id="heat-fill">
+							<span class="fill-a">0</span> <span class="fill-b"
+								id="maptottalleads">6222</span>
+						</div>
+					</div>
+
+
+				</div>
+
+				<ul class="pager wizard">
+					<li class="previous first" style="display: none;"><a href="#">First</a></li>
+					<li class="previous"><a href="#">Anterior</a></li>
+					<li class="next last" style="display: none;"><a href="#">Last</a></li>
+					<li class="next"><a href="#">Siguiente</a></li>
+				</ul>
+			</div>
+		</div>
+
+
+
+
+
+
+	</div>
+
+	<script type="text/javascript">
+		$('#vars').on(
+				'change',
+				function() {
+
+					$.ajax({
+						url : "vars",
+						success : function(result) {
+							$("#listvar option").remove();
+							$.each(result, function(i, item) {
+								$("#listvar").append(
+										$("<option />").val(item).text(item));
+
+							});
+
+						}
+					});
+
+				})
+
+		function graph() {
+
+			var scountry = $('#country option:selected').text();
+			var url = "map?name=" + scountry;
+			$
+					.get(
+							url,
+							function(data) {
+								/* chart colors default */
+								var $chrt_border_color = "#efefef";
+								var $chrt_grid_color = "#DDD"
+								var $chrt_main = "#E24913";
+								/* red       */
+								var $chrt_second = "#808080";
+								/* blue      */
+								var $chrt_third = "#FF9F01";
+								/* orange    */
+								var $chrt_fourth = "#7e9d3a";
+								/* green     */
+								var $chrt_fifth = "#BD362F";
+								/* dark red  */
+								var $chrt_mono = "#000";
+
+								if ($("#saleschart").length) {
+									var d = data;
+
+									for (var i = 0; i < d.length; ++i)
+										d[i][0] += 60 * 60 * 1000;
+
+									function weekendAreas(axes) {
+										var markings = [];
+										var d = new Date(axes.xaxis.min);
+										// go to the first Saturday
+										d.setUTCDate(d.getUTCDate()
+												- ((d.getUTCDay() + 1) % 7))
+										d.setUTCSeconds(0);
+										d.setUTCMinutes(0);
+										d.setUTCHours(0);
+										var i = d.getTime();
+										do {
+											// when we don't set yaxis, the rectangle automatically
+											// extends to infinity upwards and downwards
+											markings.push({
+												xaxis : {
+													from : i,
+													to : i + 2 * 24 * 60 * 60
+															* 1000
+												}
+											});
+											i += 7 * 24 * 60 * 60 * 1000;
+										} while (i < axes.xaxis.max);
+
+										return markings;
+									}
+
+									var options = {
+										xaxis : {
+											mode : "time",
+											tickLength : 5
+										},
+										series : {
+											lines : {
+												show : true,
+												lineWidth : 1,
+												fill : true,
+												fillColor : {
+													colors : [ {
+														opacity : 0.1
+													}, {
+														opacity : 0.15
+													} ]
+												}
+											},
+											//points: { show: true },
+											shadowSize : 0
+										},
+										selection : {
+											mode : "x"
+										},
+										grid : {
+											hoverable : true,
+											clickable : true,
+											tickColor : $chrt_border_color,
+											borderWidth : 0,
+											borderColor : $chrt_border_color,
+										},
+										tooltip : true,
+										tooltipOpts : {
+											content : "PIB en el anio <b>%x</b> fueron <span>%y</span>",
+
+											defaultTheme : false
+										},
+										colors : [ $chrt_second ],
+
+									};
+
+									var plot = $.plot($("#saleschart"), [ d ],
+											options);
+								}
+								;
+							});
 		}
 
-		var options = {
-			xaxis : {
-				mode : "time",
-				tickLength : 5
-			},
-			series : {
-				lines : {
-					show : true,
-					lineWidth : 1,
-					fill : true,
-					fillColor : {
-						colors : [{
-							opacity : 0.1
-						}, {
-							opacity : 0.15
-						}]
+		function map() {
+			data_array = {
+				"GT" : 100000,
+
+			};
+
+			$('#vector-map').vectorMap({
+				map : 'world_mill_en',
+				backgroundColor : '#c4c4c4',
+				regionStyle : {
+					initial : {
+						fill : '#ffff'
+					},
+					hover : {
+						"fill-opacity" : 1
 					}
 				},
-				//points: { show: true },
-				shadowSize : 0
-			},
-			selection : {
-				mode : "x"
-			},
-			grid : {
-				hoverable : true,
-				clickable : true,
-				tickColor : $chrt_border_color,
-				borderWidth : 0,
-				borderColor : $chrt_border_color,
-			},
-			tooltip : true,
-			tooltipOpts : {
-				content : "PIB en el anio <b>%x</b> fueron <span>%y</span>",
-				
-				defaultTheme : false
-			},
-			colors : [$chrt_second],
-
-		};
-
-		var plot = $.plot($("#saleschart"), [d], options);
-	};
-    	});
-    }	
-	
-	
-function map() {
-    data_array = {
-			"GT" : 100000,
-	
-		};
-
-		$('#vector-map').vectorMap({
-			map : 'world_mill_en',
-			backgroundColor : '#c4c4c4',
-			regionStyle : {
-				initial : {
-					fill : '#ffff'
+				series : {
+					regions : [ {
+						values : data_array,
+						scale : [ '#85a8b6', '#4d7686' ],
+						normalizeFunction : 'polynomial'
+					} ]
 				},
-				hover : {
-					"fill-opacity" : 1
+				onRegionLabelShow : function(e, el, code) {
+					if (typeof data_array[code] == 'undefined') {
+						e.preventDefault();
+					} else {
+						var countrylbl = data_array[code];
+						el.html(el.html() + ': ' + countrylbl + ' visits');
+					}
 				}
-			},
-			series : {
-				regions : [{
-					values : data_array,
-					scale : ['#85a8b6', '#4d7686'],
-					normalizeFunction : 'polynomial'
-				}]
-			},
-			onRegionLabelShow : function(e, el, code) {
-				if ( typeof data_array[code] == 'undefined') {
-					e.preventDefault();
-				} else {
-					var countrylbl = data_array[code];
-					el.html(el.html() + ': ' + countrylbl + ' visits');
-				}
+			});
+		}
+
+		$(document).ready(
+				function() {
+
+					$('#rootwizard').bootstrapWizard(
+							{
+								onTabShow : function(tab, navigation, index) {
+									var $total = navigation.find('li').length;
+									var $current = index + 1;
+									tabposition = index;
+
+									if (index == 4) {
+
+										var scountry = $(
+												'#country option:selected')
+												.text();
+										$('#scountry').val(scountry);
+										graph();
+										map();
+
+									}
+
+									var $percent = ($current / $total) * 100;
+									$('#rootwizard .progress-bar').css({
+										width : $percent + '%'
+									});
+								}
+							});
+
+					$.ajax({
+						url : "countries",
+						success : function(result) {
+							$("#country option").remove();
+							$.each(result, function(i, item) {
+								$("#country").append(
+										$("<option />").val(item).text(item));
+
+							});
+
+						}
+					});
+
+					$.ajax({
+						url : "vars",
+						success : function(result) {
+							$("#vars option").remove();
+							$.each(result, function(i, item) {
+								$("#vars").append(
+										$("<option />").val(item).text(item));
+
+							});
+
+						}
+					});
+
+				});
+
+		$('#example-2-3 .sortable-list').sortable({
+			connectWith : '#example-2-3 .sortable-list',
+			update : function() {
+				$.cookie('cookie-b', getItems('#example-2-3'));
 			}
 		});
-    }
-
-$(document).ready(function() {
-
-  	$('#rootwizard').bootstrapWizard({onTabShow: function(tab, navigation, index) {
-		var $total = navigation.find('li').length;
-		var $current = index+1;
-		tabposition = index;
-	
-		if(index == 4){
-			
-			var scountry = $('#country option:selected').text();
-			$('#scountry').val(scountry);
-			graph();
-			map();
-
-		}
-		
-	
-		var $percent = ($current/$total) * 100;
-		$('#rootwizard .progress-bar').css({width:$percent+'%'});
-	}});
-  	
-
-  	
-    $.ajax({url: "countries", success: function(result){
-   	 $("#country option").remove();
-   	$.each(result, function(i, item) {
-   		  $("#country").append( $("<option />").val(item).text(item) );
-																		
-   		});
-
-   }});
-
-    $.ajax({url: "vars", success: function(result){
-     	 $("#vars option").remove();
-     	$.each(result, function(i, item) {
-     		  $("#vars").append( $("<option />").val(item).text(item) );
-  																		
-     		});
-
-     }});
-    
-    
-    
-    
-    
-    
-
-    
-
-});
-
-$('#example-2-3 .sortable-list').sortable({
-	connectWith: '#example-2-3 .sortable-list',
-	update: function(){
-		$.cookie('cookie-b', getItems('#example-2-3'));
-	}
-});
-</script>
+	</script>
 </body>
 </html>

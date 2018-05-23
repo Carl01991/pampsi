@@ -10,11 +10,12 @@ import javax.persistence.metamodel.StaticMetamodel;
 public abstract class HistorialCobros_ {
 
 	public static volatile SingularAttribute<HistorialCobros, Integer> idHistoricoCobros;
+	public static volatile SingularAttribute<HistorialCobros, HistoricoTarifas> tarifaAplicada;
 	public static volatile SingularAttribute<HistorialCobros, Date> fecha;
 	public static volatile SingularAttribute<HistorialCobros, Integer> pagado;
 	public static volatile SingularAttribute<HistorialCobros, DetalleServicio> detalleServicio;
 	public static volatile SingularAttribute<HistorialCobros, Double> valor;
-	public static volatile SingularAttribute<HistorialCobros, CiudadanoActual> ciudadano;
+	public static volatile SingularAttribute<HistorialCobros, String> documentoIdentificacion;
 
 }
 

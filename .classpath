@@ -27,5 +27,15 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Carl0/Desktop/DPILibrary-2.0.6.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="C:/Users/Carl0/Downloads/dpiapp-win/lib/beansbinding-1.2.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Carl0/Downloads/dpiapp-win/lib/bsaf-1.9.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Carl0/Downloads/dpiapp-win/lib/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Carl0/Downloads/dpiapp-win/lib/SLCommons-1.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Carl0/Downloads/dpiapp-win/lib/SLCommonsGUI-1.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Carl0/Downloads/dpiapp-win/lib/slf4j-api-1.7.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Carl0/Downloads/dpiapp-win/lib/slf4j-log4j12-1.7.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Carl0/Downloads/dpiapp-win/lib/swing-layout-1.0.3.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

@@ -13,6 +13,7 @@ public abstract class ServiciosPrestados_ {
 	public static volatile SingularAttribute<ServiciosPrestados, String> descripcionServicio;
 	public static volatile SingularAttribute<ServiciosPrestados, Integer> estado;
 	public static volatile SingularAttribute<ServiciosPrestados, String> tipo;
+	public static volatile SingularAttribute<ServiciosPrestados, String> cuentaBancaria;
 	public static volatile SetAttribute<ServiciosPrestados, DetalleServicio> servicioDetalle;
 	public static volatile SingularAttribute<ServiciosPrestados, Departamento> departamento;
 	public static volatile SingularAttribute<ServiciosPrestados, Integer> idServicio;

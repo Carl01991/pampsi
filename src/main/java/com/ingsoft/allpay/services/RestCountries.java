@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ingsoft.allpay.model.DPI;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
@@ -35,7 +34,6 @@ private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	for(int i=0 ; i < response.getBody().getArray().length();i++){
 	
 
-	DPI countries = objectMapper.readValue(response.getBody().getArray().get(i).toString(), DPI.class);
 		
 		
 

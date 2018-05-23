@@ -8,6 +8,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(HistoricoTarifas.class)
 public abstract class HistoricoTarifas_ {
 
+	public static volatile SingularAttribute<HistoricoTarifas, String> descripcion;
 	public static volatile SingularAttribute<HistoricoTarifas, Double> tarifa;
 	public static volatile SingularAttribute<HistoricoTarifas, Integer> estado;
 	public static volatile SingularAttribute<HistoricoTarifas, Integer> periodo;

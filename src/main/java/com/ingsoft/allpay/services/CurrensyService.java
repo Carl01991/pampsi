@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
-import com.ingsoft.allpay.model.DPI;
+import com.ingsoft.allpay.model.DpiModel;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
@@ -33,7 +33,7 @@ logger.info(response.getBody());
 	}
 	
 	
-	DPI saveUSer(@Param("dpi") DPI dpi) {
+	DpiModel saveUSer(@Param("dpi") DpiModel dpi) {
 		return null;
 	} 
 	

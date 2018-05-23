@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import com.ingsoft.allpay.methods.MinCuadrados;
 import com.ingsoft.allpay.model.Ciudadano;
 import com.ingsoft.allpay.services.CurrensyService;
 import com.ingsoft.allpay.services.RestCountries;
@@ -31,8 +29,6 @@ public class MainController {
 	@Autowired
 	CurrensyService currensyService;
 	@Autowired
-	MinCuadrados minCuadrados;
-	@Autowired
 	MongoTemplate mongoTemplate;
 
 	@RequestMapping("/")
@@ -43,13 +39,12 @@ public class MainController {
 
 	@RequestMapping("started")
 	public String started(Model model) {
+		
 		return "started";
 	}
 
-	@RequestMapping("upload")
-	public String upload(Model model) {
-		return "upload";
-	}
+
+	
 
 	@RequestMapping("uploadvar")
 	public String uploadvar(Model model) {
