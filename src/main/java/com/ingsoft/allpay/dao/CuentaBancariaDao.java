@@ -177,4 +177,10 @@ public class CuentaBancariaDao implements CuentaBancariaService{
 		return null;
 	}
 
+	@Override
+	public CuentaBancaria findByCuenta(String cuenta) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

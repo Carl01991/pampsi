@@ -1,5 +1,7 @@
 package com.ingsoft.allpay.controllers;
 
+import java.util.Date;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ingsoft.allpay.dao.ResponseGeneric;
 import com.ingsoft.allpay.model.Banco;
+import com.ingsoft.allpay.model.CuentaBancaria;
+import com.ingsoft.allpay.model.ServiciosPrestados;
+import com.ingsoft.allpay.model.TransaccionBancaria;
 import com.ingsoft.allpay.resultmodel.BancoResponse;
 import com.ingsoft.allpay.resultmodel.ComprobarTransaccion;
 import com.ingsoft.allpay.resultmodel.CuentaResponse;
@@ -18,6 +23,7 @@ import com.ingsoft.allpay.resultmodel.SaldosResponse;
 import com.ingsoft.allpay.resultmodel.ServiciosPrestadosResult;
 import com.ingsoft.allpay.services.BancoService;
 import com.ingsoft.allpay.services.CuentaBancariaService;
+import com.ingsoft.allpay.services.ServiciosPrestadosService;
 import com.ingsoft.allpay.services.TransaccionBancariaService;
 
 @RestController
@@ -27,6 +33,7 @@ public class BancoController {
 	@Autowired BancoService bancoService;
 	@Autowired CuentaBancariaService cuentaService;
 	@Autowired TransaccionBancariaService transaccionService;
+	@Autowired ServiciosPrestadosService serviciosPrestadosService;
 	private static Logger logger = LoggerFactory.getLogger(BancoController.class);
 	
 	
@@ -145,6 +152,67 @@ public class BancoController {
 		}
 	}
 	
+	@PostMapping(value = "/realizarTransaccion")
+	public ComprobarTransaccion realizarTransaccion(@RequestParam String cuentaDebito, @RequestParam String nombre, @RequestParam String monto, 
+			@RequestParam String idServicio)
+	{
+		ComprobarTransaccion response = new ComprobarTransaccion();
+		try
+		{
+			Double saldo =cuentaService.getSaldoCuenta(cuentaDebito).getSaldo();
+			Double debito = Double.parseDouble(monto);
+			if(saldo-debito>0)
+			{
+				response.setEstado(true);
+				TransaccionBancaria debitoT = new TransaccionBancaria();
+				CuentaBancaria cuenta = cuentaService.findByCuenta(cuentaDebito);
+				
+				debitoT.setCuentaBancaria(cuenta);
+				
+				ServiciosPrestados serv = serviciosPrestadosService.findOne(Integer.parseInt(idServicio));
+				
+				debitoT.setDescripcion("Pago servicio "+serv.getNombreServicio());
+				debitoT.setFecha(new Date());
+				debitoT.setTipo("-1");
+				debitoT.setValor(Float.parseFloat(monto));
+				transaccionService.save(debitoT);
+				
+				TransaccionBancaria creditoT = new TransaccionBancaria();
+				CuentaBancaria cuentaDep = cuentaService.findByCuenta(serv.getCuentaBancaria());
+				
+				
+				creditoT.setCuentaBancaria(cuentaDep);	
+				creditoT.setDescripcion("Pago servicio "+serv.getNombreServicio()+" a nombre de "+nombre);
+				creditoT.setFecha(new Date());
+				creditoT.setTipo("1");
+				creditoT.setValor(Float.parseFloat(monto));
+				transaccionService.save(creditoT);
+				response.setCode("1");
+				response.setMessage("Transaccion Realizada con exito");
+				
+				
+			}
+			else
+			{
+				response.setEstado(false);
+				response.setCode("0");
+				response.setMessage("No cuenta con los fondos necesarios");
+			}
+
+			
+			
+			return response;
+			
+			
+		}catch(Exception e)
+		{
+			logger.info("ERROR AL OBTENER EL SALDO DE LA CUENTA "+e);
+			response.setMessage("Erro al obtener el saldo de la cuenta "+cuentaDebito);
+			response.setCode("0");
+			return response;
+		
+		}
+	}
 	
 	
 
