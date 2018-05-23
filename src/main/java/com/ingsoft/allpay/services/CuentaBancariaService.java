@@ -23,5 +23,8 @@ public interface CuentaBancariaService extends JpaRepository<CuentaBancaria, Ser
 	
 	@Query("select new com.ingsoft.allpay.resultmodel.SaldosResponse(sum((t.valor*t.tipo)) as saldo) from CuentaBancaria c Inner join c.transaccionBancaria as t where c.noCuenta=?1")
 	SaldosResponse getSaldoCuenta(String noCuenta);
+	
+	@Query("select c from CuentaBancaria c where c.noCuenta=?1")
+	CuentaBancaria findByCuenta(String cuenta);
 }
 
