@@ -140,6 +140,15 @@
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>DPILibrary</groupId>
+			<artifactId>DPILibrary</artifactId>
+			<version>2.0.6</version>
+			<scope>system</scope>
+			<systemPath>C:\Users\Carl0\Desktop\DPILibrary-2.0.6.jar</systemPath>
+		</dependency>
+		
+		
 	</dependencies>
 
 	<build>

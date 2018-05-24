@@ -15,21 +15,8 @@
 <script src="../static/js/prettify.js" th:src="@{/js/prettify.js}"></script>
 <script src="../static/js/jquery.bootstrap.wizard.js"
 	th:src="@{/js/jquery.bootstrap.wizard.min.js}"></script>
-<script src="js/vectormap/jquery-jvectormap-1.2.2.min.js"
-	th:src="@{/js/vectormap/jquery-jvectormap-1.2.2.min.js}"></script>
-<script src="js/vectormap/jquery-jvectormap-world-mill-en.js"
-	th:src="@{/js/vectormap/jquery-jvectormap-world-mill-en.js}"></script>
-<script src="js/plugin/flot/jquery.flot.cust.min.js"></script>
-<script src="js/plugin/flot/jquery.flot.resize.min.js"></script>
-<script src="js/plugin/flot/jquery.flot.fillbetween.min.js"></script>
-<script src="js/plugin/flot/jquery.flot.orderBar.min.js"></script>
-<script src="js/plugin/flot/jquery.flot.pie.min.js"></script>
-<script src="js/plugin/flot/jquery.flot.time.min.js"></script>
-<script src="js/plugin/flot/jquery.flot.tooltip.min.js"></script>
+<script src="../static/js/jquery.camera.js" th:src="@{/js/jquery.camera.js}"></script>
 
-<!-- <script type="text/javascript" th:src="@{/js/jquery-1.4.2.min.js}"></script> -->
-<!-- <script type="text/javascript" th:src="@{/js/jquery-ui-1.8.custom.min.js}"></script> -->
-<!-- <script type="text/javascript" th:src="@{/js/jquery.cookie.js}"></script> -->
 </head>
 <body>
 	<div class="container" style="width: 100%">
@@ -43,9 +30,11 @@
 				<div class="navbar-inner">
 					<div class="container">
 						<ul>
-							<li><a href="#tab1" data-toggle="tab">Ingresa tus Datos</a></li>
-							<li><a href="#tab2" data-toggle="tab">Verifica tus Datos</a></li>
-							<li><a href="#tab3" data-toggle="tab">Creando tu usuario</a></li>
+							<li><a href="#tab1" data-toggle="tab">Verifica tus Datos</a></li>
+							<li><a href="#tab2" data-toggle="tab">Datos Adicionales</a></li>
+							<li><a href="#tab3" data-toggle="tab">Toma de Fotografia</a></li>
+							<li><a href="#tab3" data-toggle="tab">Afiliacion de Servicios</a></li>
+							
 
 						</ul>
 					</div>
@@ -60,19 +49,13 @@
 					<div class="row">
 						<div class="col-sm-6">
 							<div class="form-group">
-								<form action="/addCiudadano" method="POST">
-									CUI <input type="text" id="cui" name="cui" /><br /> Primer
-									Nombre <input type="text" id="primerNombre" name="primerNombre" /><br />
-									Segundo Nombre <input type="text" id="segundoNombre"
-										name="segundoNombre" /><br /> Primer Apellido <input
-										type="text" id="primerApellido" name="primerApellido" /><br />
-									Segundo Apellido <input type="text" id="segundoApellido"
-										name="segundoApellido" /><br /> <select multiple="multiple"
-										id="list" name="list">
-										<option name="nombre" value="iusi">IUSI</option>
-										<option name="nombre" value="isr">ISR</option>
-									</select> <input type="submit" />
-								</form>
+ 							<input id="cui"  th:value = "${dpi.cui}"/>
+ 							<input id="Nombre1"  th:value = "${dpi.Nombre1}"/>
+ 							<input id="Nombre2"  th:value = "${dpi.Nombre2}"/>
+ 							<input id="Apellido1"  th:value = "${dpi.Apellido1}"/>
+ 							<input id="Apellido2"  th:value = "${dpi.Apellido2}"/>
+ 							<img th:src="${image}"/>
+ 						
 							</div>
 						</div>
 					</div>
@@ -82,8 +65,10 @@
 						<div class="col-sm-6">
 							<div class="form-group">
 								<div class="input-group">
-									<span class="input-group-addon"><i
-										class="fa fa-flag fa-lg fa-fw"></i>Tus Datos</span>
+ 							<input id="cell" />
+ 							<input id="email" />
+ 							
+ 					
 
 
 								</div>
@@ -95,15 +80,23 @@
 
 				</div>
 				<div class="tab-pane" id="tab3">
-
 					<div class="row">
 						<div class="col-sm-6">
 							<div class="form-group">
-								<div class="input-group">
-									<span class="input-group-addon"><i
-										class="fa fa-flag fa-lg fa-fw"></i>Verifica tus Datos</span>
-
-								</div>
+								<div class="input-group"  >
+								  <div id="camera"></div>
+<!--     <script src="http://code.jquery.com/jquery-1.4.4.min.js"></script> -->
+    <script>
+      $(document).ready(function(){
+        $("#camera").camera({
+          resolution: "HD", // "QVGA", "VGA", "HD"
+          snap: function(result){
+            console.log(result);
+          }
+        });
+      });
+    </script>
+				
 							</div>
 							<div id="example-2-3"></div>
 						</div>
@@ -176,6 +169,8 @@
 	</div>
 
 	<script type="text/javascript">
+
+	
 		$('#vars').on(
 				'change',
 				function() {
@@ -335,6 +330,7 @@
 
 		$(document).ready(
 				function() {
+			
 
 					$('#rootwizard').bootstrapWizard(
 							{
@@ -396,5 +392,6 @@
 			}
 		});
 	</script>
+	
 </body>
 </html>

@@ -1,9 +1,16 @@
 package com.ingsoft.allpay.controllers;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Base64;
+
+import javax.imageio.ImageIO;
+import javax.smartcardio.CardException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -16,9 +23,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.ingsoft.allpay.methods.ImageGenerator;
 import com.ingsoft.allpay.model.Ciudadano;
+import com.ingsoft.allpay.model.DpiModel;
 import com.ingsoft.allpay.services.CurrensyService;
 import com.ingsoft.allpay.services.RestCountries;
+import com.sltech.dpi.exception.DPIConnectException;
+import com.sltech.dpi.exception.DPIException;
+import com.sltech.dpi.smartcard.DatosdpiTO;
+import com.sltech.dpi.smartcard.SmartCardDPIReader;
+import com.sltech.dpi.util.CardUtils;
 
 @Controller
 
@@ -30,6 +45,8 @@ public class MainController {
 	CurrensyService currensyService;
 	@Autowired
 	MongoTemplate mongoTemplate;
+	@Autowired 
+	ImageGenerator imageGenerator;
 
 	@RequestMapping("/")
 	public String home(Model model) {
@@ -37,10 +54,9 @@ public class MainController {
 		return "index";
 	}
 
-	@RequestMapping("started")
-	public String started(Model model) {
-		
-		return "started";
+	@RequestMapping("dpidetector")
+	public String started() {
+		return "dpidetector";
 	}
 
 
@@ -51,11 +67,58 @@ public class MainController {
 		return "uploadvar";
 	}
 
-	@RequestMapping(value = "/addCiudadano", method = RequestMethod.POST)
-	public String addciudadno(@ModelAttribute Ciudadano ciudadano) {
-		Ciudadano ciudadanos = ciudadano;
-		mongoTemplate.save(ciudadanos);
-		return "uploadvar";
+	@SuppressWarnings("deprecation")
+	@RequestMapping(value = "/adduser")
+	public String addciudadno(Model model) throws CardException, DPIConnectException, DPIException, IOException {
+		 com.ingsoft.allpay.methods.SCardConexion sc = new com.ingsoft.allpay.methods.SCardConexion();
+		 DatosdpiTO dpi = getDPI(sc);
+		
+		DpiModel dpiResult = new DpiModel() ;
+		
+		dpiResult.setApellido1(dpi.getApellido1());
+		dpiResult.setApellido2(dpi.getApellido2());
+		dpiResult.setApellidoCasada(dpi.getApellidoDeCasada()); 
+		dpiResult.setCui(dpi.getCui());
+		dpiResult.setEstadoCivil(dpi.getEstadoCivil());
+		dpiResult.setFechaNAc(dpi.getNacimientoFecha());
+		dpiResult.setGenero(dpi.getGenero());
+		dpiResult.setLimitaciones(dpi.getLimitacionesFisicas());
+		dpiResult.setNacionalidad(dpi.getNacionalidad());
+		dpiResult.setNombre1(dpi.getNombre1());
+		dpiResult.setNombre2(dpi.getNombre2());
+		dpiResult.setPaisNAc(dpi.getNacimientoPais());
+		dpiResult.setSerialNumber(dpi.getSerialNumber());
+		dpiResult.setDepartamento(dpi.getCedulaDepartamento());
+		dpiResult.setMunicipio(dpi.getCedulaMunicipio());
+		model.addAttribute("dpi",dpiResult);
+//		model.addAttribute("image",imageGenerator.ByteArrayToImage(dpi.getFoto())); 
+		System.out.println(dpi.getFoto());
+
+		return "started";
 	}
+	
+	
+	
+	
+	private DatosdpiTO getDPI(com.ingsoft.allpay.methods.SCardConexion sc) throws CardException, DPIConnectException, DPIException, IOException {
+		  System.out.println("Leyendo esta maravlla");
+		  CardUtils cardUtils; 
+		   long startTime = System.currentTimeMillis();
+		  System.out.println(CardUtils.checkATR(sc.connect(0, "*").getBytes()));
+		   SmartCardDPIReader smartDPI = new SmartCardDPIReader(sc.terminals().get(0));
+	       DatosdpiTO dpi;
+	       
+
+	  	dpi = smartDPI.readAllData();
+	  	smartDPI.readFingerPrintsEnrolled();
+		return dpi;
+	  	
+		}
+
+
+
+	
+	
+	
 
 }

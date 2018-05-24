@@ -79,16 +79,15 @@ public class WsController {
 		
 	   while(terminal.isCardPresent() != true) {
 	   
-	  
-		  System.out.println("entrando al if");
+	 
 
 	   }
 		
-	   getDPI(sc);
+//	   getDPI(sc);
     	
     	
     	
-        return "Registro Creado";
+        return "Registro Creado"; 
     }    
     
 
