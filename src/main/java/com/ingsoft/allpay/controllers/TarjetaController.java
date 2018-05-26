@@ -27,14 +27,14 @@ import com.ingsoft.allpay.services.ServiciosPrestadosService;
 import com.ingsoft.allpay.services.TransaccionBancariaService;
 
 @RestController
-@RequestMapping(value = "/bancoService")
-public class BancoController {
+@RequestMapping(value = "/tarjetaControler")
+public class TarjetaController {
 	
 	@Autowired BancoService bancoService;
 	@Autowired CuentaBancariaService cuentaService;
 	@Autowired TransaccionBancariaService transaccionService;
 	@Autowired ServiciosPrestadosService serviciosPrestadosService;
-	private static Logger logger = LoggerFactory.getLogger(BancoController.class);
+	private static Logger logger = LoggerFactory.getLogger(TarjetaController.class);
 	
 	
 	@GetMapping(value = "/getAllBancos")
@@ -78,20 +78,20 @@ public class BancoController {
 	
 	
 	@PostMapping(value ="/buscarCuentaDocumento")
-	public ResponseGeneric<CuentaResponse> getCuentaPorDocumento(@RequestParam String cui)
+	public ResponseGeneric<CuentaResponse> getCuentaPorDocumento(@RequestParam String numeroDocumentoIdentificacion)
 	{
 		
 		ResponseGeneric<CuentaResponse> response = new ResponseGeneric<CuentaResponse>();
 		try
 		{
-			response.setResponse(cuentaService.findByNoDocumentoIdenti(cui));			
+			response.setResponse(cuentaService.findByNoDocumentoIdenti(numeroDocumentoIdentificacion));			
 			response.setCode("1");
 			response.setMessage("Transaccion correcta");
 			return response;
 		}catch(Exception e)
 		{
 			response.setCode("0");
-			response.setMessage("Error al obtener la numero "+cui);
+			response.setMessage("Error al obtener la numero "+numeroDocumentoIdentificacion);
 			logger.info("ERROR "+e);
 			return response;
 		}
@@ -121,13 +121,13 @@ public class BancoController {
 	
 	
 	@PostMapping(value = "/comprobarTransaccion")
-	public ComprobarTransaccion comprobarTransaccion(@RequestParam String numeroCuenta, @RequestParam String montoDebitar)
+	public ComprobarTransaccion comprobarTransaccion(@RequestParam String numeroTarjeta, @RequestParam String ccv, @RequestParam String Date)
 	{
 		ComprobarTransaccion response = new ComprobarTransaccion();
 		try
 		{
-			Double saldo =cuentaService.getSaldoCuenta(numeroCuenta).getSaldo();
-			Double debito = Double.parseDouble(montoDebitar);
+			Double saldo =cuentaService.getSaldoCuenta(numeroTarjeta).getSaldo();
+			Double debito = Double.parseDouble(numeroTarjeta);
 			if(saldo-debito>0)
 			{
 				response.setEstado(true);
@@ -145,7 +145,7 @@ public class BancoController {
 		}catch(Exception e)
 		{
 			logger.info("ERROR AL OBTENER EL SALDO DE LA CUENTA "+e);
-			response.setMessage("Erro al obtener el saldo de la cuenta "+numeroCuenta);
+			response.setMessage("Erro al obtener el saldo de la cuenta "+numeroTarjeta);
 			response.setCode("0");
 			return response;
 		
@@ -153,19 +153,19 @@ public class BancoController {
 	}
 	
 	@PostMapping(value = "/realizarTransaccion")
-	public ComprobarTransaccion realizarTransaccion(@RequestParam String cuentaDebito, @RequestParam String cui, @RequestParam String monto, 
+	public ComprobarTransaccion realizarTransaccion(@RequestParam String numeroTarjeta, @RequestParam String cui, @RequestParam String monto, 
 			@RequestParam String idServicio)
 	{
 		ComprobarTransaccion response = new ComprobarTransaccion();
 		try
 		{
-			Double saldo =cuentaService.getSaldoCuenta(cuentaDebito).getSaldo();
+			Double saldo =cuentaService.getSaldoCuenta(numeroTarjeta).getSaldo();
 			Double debito = Double.parseDouble(monto);
 			if(saldo-debito>0)
 			{
 				response.setEstado(true);
 				TransaccionBancaria debitoT = new TransaccionBancaria();
-				CuentaBancaria cuenta = cuentaService.findByCuenta(cuentaDebito);
+				CuentaBancaria cuenta = cuentaService.findByCuenta(numeroTarjeta);
 				
 				debitoT.setCuentaBancaria(cuenta);
 				
@@ -207,7 +207,7 @@ public class BancoController {
 		}catch(Exception e)
 		{
 			logger.info("ERROR AL OBTENER EL SALDO DE LA CUENTA "+e);
-			response.setMessage("Erro al obtener el saldo de la cuenta "+cuentaDebito);
+			response.setMessage("Erro al obtener el saldo de la cuenta "+numeroTarjeta);
 			response.setCode("0");
 			return response;
 		

@@ -159,7 +159,7 @@ public class DetalleServicioDao implements DetalleServiciosService{
 	}
 
 	@Override
-	public List<DetalleServiciosResultmodel> findByServicio(Integer idServicio, String cui) {
+	public List<DetalleServiciosResultmodel> findByServicio(String tipo, String cui) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -60,13 +60,13 @@ public class ServiciosEegsa {
 	
 	
 	@GetMapping(value = "/getSaldoUsuario")
-	public ResponseGeneric<HistoricoGeneralPorCiudadano> getSaldoUsuario(@RequestParam String idServicio, @RequestParam String documento){
+	public ResponseGeneric<HistoricoGeneralPorCiudadano> getSaldoUsuario(@RequestParam String idServicio, @RequestParam String cui){
 		
 		ResponseGeneric<HistoricoGeneralPorCiudadano> response = new ResponseGeneric<HistoricoGeneralPorCiudadano>();
 		try
 		{
 			Double total =(double) 0;
-			List<HistoricoPorCiudadano> historico = historicoUsuario.findByHistoricoUser(Integer.parseInt(idServicio), documento);
+			List<HistoricoPorCiudadano> historico = historicoUsuario.findByHistoricoUser(Integer.parseInt(idServicio), cui);
 			for(HistoricoPorCiudadano h: historico)
 			{
 				total=(Double) (total+h.getValorPagar());
@@ -94,20 +94,20 @@ public class ServiciosEegsa {
 	
 	
 	@PostMapping(value = "/savePago")
-	public ResponseGenricValue registrarPago(@RequestParam String documentoCobro, @RequestParam String documentoIdentificacion, @RequestParam String valor){
+	public ResponseGenricValue registrarPago(@RequestParam String documentoCobro, @RequestParam String cui, @RequestParam String valor){
 		
 		ResponseGenricValue response = new ResponseGenricValue();
 		try
 		{
 			
 			RegistroDePagos pago = new RegistroDePagos();
-			pago.setDocumentoIdentificacion(documentoIdentificacion);
+			pago.setDocumentoIdentificacion(cui);
 			pago.setIdHistoricoCobro(Integer.parseInt(documentoCobro));
 			pago.setValor(Float.parseFloat(valor));
 			pago.setFecha(new Date());
 			HistorialCobros actual = historicoUsuario.findOne(Integer.parseInt(documentoCobro));
 			logger.info("ID DE ACTUAL "+actual.getFecha());
-			List<HistorialCobros> anteriores = historicoUsuario.findExistAnterior(documentoIdentificacion, actual.getFecha(), actual.getDetalleServicio().getIdDetalleServicio());
+			List<HistorialCobros> anteriores = historicoUsuario.findExistAnterior(cui, actual.getFecha(), actual.getDetalleServicio().getIdDetalleServicio());
 			if(!anteriores.isEmpty())
 			{
 				response.setCode("0");
@@ -142,7 +142,7 @@ public class ServiciosEegsa {
 		ResponseGeneric<DetalleServiciosResultmodel> response = new ResponseGeneric<DetalleServiciosResultmodel>();
 		try
 		{
-			response.setResponse(detalleServiciosService.findByServicio(3,cui));
+			response.setResponse(detalleServiciosService.findByServicio("eegsa",cui));
 			response.setCode("1");
 			response.setMessage("Transaccion correcta");
 			return response;

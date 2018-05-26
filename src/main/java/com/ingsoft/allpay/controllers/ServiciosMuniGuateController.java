@@ -67,7 +67,7 @@ public class ServiciosMuniGuateController {
 		ResponseGeneric<DetalleServiciosResultmodel> response = new ResponseGeneric<DetalleServiciosResultmodel>();
 		try
 		{
-			response.setResponse(detalleServiciosService.findByServicio(1,cui));
+			response.setResponse(detalleServiciosService.findByServicio("gua",cui));
 			response.setCode("1");
 			response.setMessage("Transaccion correcta");
 			return response;
@@ -103,13 +103,13 @@ public class ServiciosMuniGuateController {
 	
 	
 	@PostMapping(value = "/getSaldoUsuario")
-	public ResponseGeneric registrarPago(@RequestParam String idServicio, @RequestParam String documento){
+	public ResponseGeneric registrarPago(@RequestParam String idServicio, @RequestParam String cui){
 		
 		ResponseGeneric<HistoricoGeneralPorCiudadano> response = new ResponseGeneric<HistoricoGeneralPorCiudadano>();
 		try
 		{
 			Double total =(double) 0;
-			List<HistoricoPorCiudadano> historico = historicoUsuario.findByHistoricoUser(Integer.parseInt(idServicio), documento);
+			List<HistoricoPorCiudadano> historico = historicoUsuario.findByHistoricoUser(Integer.parseInt(idServicio), cui);
 			for(HistoricoPorCiudadano h: historico)
 			{
 				total=(Double) (total+h.getValorPagar());
@@ -135,20 +135,20 @@ public class ServiciosMuniGuateController {
 	}
 	
 	@PostMapping(value = "/savePago")
-	public ResponseGenricValue registrarPago(@RequestParam String documentoCobro, @RequestParam String documentoIdentificacion, @RequestParam String valor){
+	public ResponseGenricValue registrarPago(@RequestParam String documentoCobro, @RequestParam String cui, @RequestParam String valor){
 		
 		ResponseGenricValue response = new ResponseGenricValue();
 		try
 		{
 			
 			RegistroDePagos pago = new RegistroDePagos();
-			pago.setDocumentoIdentificacion(documentoIdentificacion);
+			pago.setDocumentoIdentificacion(cui);
 			pago.setIdHistoricoCobro(Integer.parseInt(documentoCobro));
 			pago.setValor(Float.parseFloat(valor));
 			pago.setFecha(new Date());
 			HistorialCobros actual = historicoUsuario.findOne(Integer.parseInt(documentoCobro));
 			logger.info("ID DE ACTUAL "+actual.getDetalleServicio().getIdDetalleServicio());
-			List<HistorialCobros> anteriores = historicoUsuario.findExistAnterior(documentoIdentificacion, actual.getFecha(), actual.getDetalleServicio().getIdDetalleServicio());
+			List<HistorialCobros> anteriores = historicoUsuario.findExistAnterior(cui, actual.getFecha(), actual.getDetalleServicio().getIdDetalleServicio());
 			if(!anteriores.isEmpty())
 			{
 				response.setCode("0");
