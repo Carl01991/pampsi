@@ -28,8 +28,8 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.data.mongodb.core.MongoTemplate;
-//import org.springframework.data.mongodb.core.query.Criteria;
-//import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,15 +53,6 @@ public class WsController {
     
     @GetMapping(value = "dpiConsult")  
     public DpiModel  map(@RequestParam String cui) throws ParseException, IOException {
-
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
     	DpiModel dpi = null; 	
         return dpi;
     	
@@ -76,17 +67,10 @@ public class WsController {
 	   	  com.ingsoft.allpay.methods.SCardConexion sc = new com.ingsoft.allpay.methods.SCardConexion();
 	   	CardTerminal terminal = sc.terminals().get(0);
 	   System.out.println(terminal.isCardPresent());	
-		
 	   while(terminal.isCardPresent() != true) {
 	   
-	 
-
 	   }
-		
-//	   getDPI(sc);
-    	
-    	
-    	
+
         return "Registro Creado"; 
     }    
     

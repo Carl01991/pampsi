@@ -15,8 +15,13 @@
 <script src="../static/js/prettify.js" th:src="@{/js/prettify.js}"></script>
 <script src="../static/js/jquery.bootstrap.wizard.js"
 	th:src="@{/js/jquery.bootstrap.wizard.min.js}"></script>
-<script src="../static/js/jquery.camera.js" th:src="@{/js/jquery.camera.js}"></script>
-
+<script src="../static/js/jquery.camera.js"
+	th:src="@{/js/jquery.camera.js}"></script>
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+		<link rel="stylesheet" href="style.css">
+		<!-- Google Fonts -->
+		<link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
 </head>
 <body>
 	<div class="container" style="width: 100%">
@@ -32,9 +37,11 @@
 						<ul>
 							<li><a href="#tab1" data-toggle="tab">Verifica tus Datos</a></li>
 							<li><a href="#tab2" data-toggle="tab">Datos Adicionales</a></li>
-							<li><a href="#tab3" data-toggle="tab">Toma de Fotografia</a></li>
-							<li><a href="#tab3" data-toggle="tab">Afiliacion de Servicios</a></li>
-							
+							<li><a href="#tab3" data-toggle="tab">Primer Fotografia</a></li>
+							<li><a href="#tab4" data-toggle="tab">Segunda Fotografia</a></li>
+							<li><a href="#tab5" data-toggle="tab">Tercer Fotografia</a></li>
+							<li><a href="#tab6" data-toggle="tab">Afiliacion de	Servicio</a></li>
+
 
 						</ul>
 					</div>
@@ -46,17 +53,51 @@
 			</div>
 			<div class="tab-content">
 				<div class="tab-pane" id="tab1">
-					<div class="row">
+					<div class="row" style="margin-left: 50%">
 						<div class="col-sm-6">
-							<div class="form-group">
- 							<input id="cui"  th:value = "${dpi.cui}"/>
- 							<input id="Nombre1"  th:value = "${dpi.Nombre1}"/>
- 							<input id="Nombre2"  th:value = "${dpi.Nombre2}"/>
- 							<input id="Apellido1"  th:value = "${dpi.Apellido1}"/>
- 							<input id="Apellido2"  th:value = "${dpi.Apellido2}"/>
- 							<img th:src="${image}"/>
- 						
+		
+												<div class="form-group">
+								<input id="cui" th:value="${dpi.cui}"  style="display: none;" /> 
+								<input id="Nombre1"	th:value="${dpi.Nombre1}" style="display: none;"/>
+								<input id="Nombre2"	th:value="${dpi.Nombre2}" style="display: none;"/>
+								<input id="Apellido1" th:value="${dpi.Apellido1}" style="display: none;"/>
+								 <input id="Apellido2" th:value="${dpi.Apellido2}" style="display: none;"/> 
+								 <img th:src="@{'data:image/jpeg;base64,'+${image}}" />
 							</div>
+												
+						
+						<div class="form-group">
+							<label for="name" class="cols-sm-2 control-label">Tu Nombre</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="name" id="name" th:value="${dpi.Nombre1}+' '+${dpi.Nombre2}+' '+${dpi.Apellido1}+' '+${dpi.Apellido2}"   />
+								</div>
+							</div>
+						</div>
+
+	
+
+						<div class="form-group">
+							<label for="username" class="cols-sm-2 control-label">Numero de CUI</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="username" id="username"  placeholder="Enter your Username"/>
+								</div>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label for="username" class="cols-sm-2 control-label">Nacionalidad</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="username" id="username"  placeholder="Enter your Username"/>
+								</div>
+							</div>
+						</div>
+
 						</div>
 					</div>
 				</div>
@@ -64,334 +105,124 @@
 					<div class="row">
 						<div class="col-sm-6">
 							<div class="form-group">
+					<div class="form-group">
+							<label for="email" class="cols-sm-2 control-label">Your Email</label>
+							<div class="cols-sm-10">
 								<div class="input-group">
- 							<input id="cell" />
- 							<input id="email" />
- 							
- 					
+									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
+								</div>
+							</div>
+						</div>
 
-
+								<div class="control-group">
+									<label class="control-label" for="name">Telefono</label>
+									<div class="controls">
+										<input type="text" id="telefono" class="required">
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-
-
-
 				</div>
 				<div class="tab-pane" id="tab3">
 					<div class="row">
 						<div class="col-sm-6">
 							<div class="form-group">
-								<div class="input-group"  >
-								  <div id="camera"></div>
-<!--     <script src="http://code.jquery.com/jquery-1.4.4.min.js"></script> -->
-    <script>
-      $(document).ready(function(){
-        $("#camera").camera({
-          resolution: "HD", // "QVGA", "VGA", "HD"
-          snap: function(result){
-            console.log(result);
-          }
-        });
-      });
-    </script>
-				
+								<div class="input-group">
+									<div id="camera"></div>
+									<!--     <script src="http://code.jquery.com/jquery-1.4.4.min.js"></script> -->
+									<script>
+										$(document).ready(function() {
+											$("#camera").camera({
+												resolution : "HD", // "QVGA", "VGA", "HD"
+												snap : function(result) {
+													console.log(result);
+												}
+											});
+										});
+									</script>
+
+								</div>
+
 							</div>
-							<div id="example-2-3"></div>
 						</div>
 					</div>
+
 				</div>
 				<div class="tab-pane" id="tab4">
-
 					<div class="row">
 						<div class="col-sm-6">
 							<div class="form-group">
 								<div class="input-group">
-									<span class="input-group-addon"><i
-										class="fa fa-flag fa-lg fa-fw"></i>Selecciona las variables
-										que desee aplicar</span> <select name="listvar" id="listvar"
-										class="form-control input-lg" multiple="multiple">
 
-									</select>
+
 								</div>
+
 							</div>
 						</div>
 					</div>
-
 
 				</div>
 				<div class="tab-pane" id="tab5">
 					<div class="row">
-						<div class="col-sm-12">
-							Pais Seleccionado <input class="form-control input-lg"
-								id="scountry" type="text" name="scountry" disabled="disabled" />
+						<div class="col-sm-6">
 							<div class="form-group">
-								<div class="input-group"></div>
+								<div class="input-group">
+									
+
+								</div>
+
 							</div>
 						</div>
 					</div>
-					<div class="  widget-body no-padding">
-
-						<div id="saleschart" class="chart"
-							style="width: 100%; height: 400px"></div>
-
-					</div>
-
 
 				</div>
 				<div class="tab-pane" id="tab6">
-					<div class="content">
-						<div id="vector-map" class="vector-map"></div>
-						<div id="heat-fill">
-							<span class="fill-a">0</span> <span class="fill-b"
-								id="maptottalleads">6222</span>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">vxcvdvfb</div>
 						</div>
 					</div>
 
-
 				</div>
-
-				<ul class="pager wizard">
-					<li class="previous first" style="display: none;"><a href="#">First</a></li>
-					<li class="previous"><a href="#">Anterior</a></li>
-					<li class="next last" style="display: none;"><a href="#">Last</a></li>
-					<li class="next"><a href="#">Siguiente</a></li>
-				</ul>
+<!-- 				<ul class="pager wizard"> -->
+<!-- 					<li class="previous"><a href="#">Anterior</a></li> -->
+<!-- 					<li class="next"><a href="#">Siguiente</a></li> -->
+<!-- 				</ul> -->
 			</div>
-		</div>
 
+			<script type="text/javascript">
+				$(document)
+						.ready(
+								function() {
 
+									$('#rootwizard')
+											.bootstrapWizard(
+													{
+														onTabShow : function(
+																tab,
+																navigation,
+																index) {
+															var $total = navigation
+																	.find('li').length;
+															var $current = index + 1;
+															tabposition = index;
 
+													
 
+															var $percent = ($current / $total) * 100;
+															$(
+																	'#rootwizard .progress-bar')
+																	.css(
+																			{
+																				width : $percent
+																						+ '%'
+																			});
+														}
+													});
 
-
-	</div>
-
-	<script type="text/javascript">
-
-	
-		$('#vars').on(
-				'change',
-				function() {
-
-					$.ajax({
-						url : "vars",
-						success : function(result) {
-							$("#listvar option").remove();
-							$.each(result, function(i, item) {
-								$("#listvar").append(
-										$("<option />").val(item).text(item));
-
-							});
-
-						}
-					});
-
-				})
-
-		function graph() {
-
-			var scountry = $('#country option:selected').text();
-			var url = "map?name=" + scountry;
-			$
-					.get(
-							url,
-							function(data) {
-								/* chart colors default */
-								var $chrt_border_color = "#efefef";
-								var $chrt_grid_color = "#DDD"
-								var $chrt_main = "#E24913";
-								/* red       */
-								var $chrt_second = "#808080";
-								/* blue      */
-								var $chrt_third = "#FF9F01";
-								/* orange    */
-								var $chrt_fourth = "#7e9d3a";
-								/* green     */
-								var $chrt_fifth = "#BD362F";
-								/* dark red  */
-								var $chrt_mono = "#000";
-
-								if ($("#saleschart").length) {
-									var d = data;
-
-									for (var i = 0; i < d.length; ++i)
-										d[i][0] += 60 * 60 * 1000;
-
-									function weekendAreas(axes) {
-										var markings = [];
-										var d = new Date(axes.xaxis.min);
-										// go to the first Saturday
-										d.setUTCDate(d.getUTCDate()
-												- ((d.getUTCDay() + 1) % 7))
-										d.setUTCSeconds(0);
-										d.setUTCMinutes(0);
-										d.setUTCHours(0);
-										var i = d.getTime();
-										do {
-											// when we don't set yaxis, the rectangle automatically
-											// extends to infinity upwards and downwards
-											markings.push({
-												xaxis : {
-													from : i,
-													to : i + 2 * 24 * 60 * 60
-															* 1000
-												}
-											});
-											i += 7 * 24 * 60 * 60 * 1000;
-										} while (i < axes.xaxis.max);
-
-										return markings;
-									}
-
-									var options = {
-										xaxis : {
-											mode : "time",
-											tickLength : 5
-										},
-										series : {
-											lines : {
-												show : true,
-												lineWidth : 1,
-												fill : true,
-												fillColor : {
-													colors : [ {
-														opacity : 0.1
-													}, {
-														opacity : 0.15
-													} ]
-												}
-											},
-											//points: { show: true },
-											shadowSize : 0
-										},
-										selection : {
-											mode : "x"
-										},
-										grid : {
-											hoverable : true,
-											clickable : true,
-											tickColor : $chrt_border_color,
-											borderWidth : 0,
-											borderColor : $chrt_border_color,
-										},
-										tooltip : true,
-										tooltipOpts : {
-											content : "PIB en el anio <b>%x</b> fueron <span>%y</span>",
-
-											defaultTheme : false
-										},
-										colors : [ $chrt_second ],
-
-									};
-
-									var plot = $.plot($("#saleschart"), [ d ],
-											options);
-								}
-								;
-							});
-		}
-
-		function map() {
-			data_array = {
-				"GT" : 100000,
-
-			};
-
-			$('#vector-map').vectorMap({
-				map : 'world_mill_en',
-				backgroundColor : '#c4c4c4',
-				regionStyle : {
-					initial : {
-						fill : '#ffff'
-					},
-					hover : {
-						"fill-opacity" : 1
-					}
-				},
-				series : {
-					regions : [ {
-						values : data_array,
-						scale : [ '#85a8b6', '#4d7686' ],
-						normalizeFunction : 'polynomial'
-					} ]
-				},
-				onRegionLabelShow : function(e, el, code) {
-					if (typeof data_array[code] == 'undefined') {
-						e.preventDefault();
-					} else {
-						var countrylbl = data_array[code];
-						el.html(el.html() + ': ' + countrylbl + ' visits');
-					}
-				}
-			});
-		}
-
-		$(document).ready(
-				function() {
-			
-
-					$('#rootwizard').bootstrapWizard(
-							{
-								onTabShow : function(tab, navigation, index) {
-									var $total = navigation.find('li').length;
-									var $current = index + 1;
-									tabposition = index;
-
-									if (index == 4) {
-
-										var scountry = $(
-												'#country option:selected')
-												.text();
-										$('#scountry').val(scountry);
-										graph();
-										map();
-
-									}
-
-									var $percent = ($current / $total) * 100;
-									$('#rootwizard .progress-bar').css({
-										width : $percent + '%'
-									});
-								}
-							});
-
-					$.ajax({
-						url : "countries",
-						success : function(result) {
-							$("#country option").remove();
-							$.each(result, function(i, item) {
-								$("#country").append(
-										$("<option />").val(item).text(item));
-
-							});
-
-						}
-					});
-
-					$.ajax({
-						url : "vars",
-						success : function(result) {
-							$("#vars option").remove();
-							$.each(result, function(i, item) {
-								$("#vars").append(
-										$("<option />").val(item).text(item));
-
-							});
-
-						}
-					});
-
-				});
-
-		$('#example-2-3 .sortable-list').sortable({
-			connectWith : '#example-2-3 .sortable-list',
-			update : function() {
-				$.cookie('cookie-b', getItems('#example-2-3'));
-			}
-		});
-	</script>
-	
+								});
+			</script>
 </body>
 </html>

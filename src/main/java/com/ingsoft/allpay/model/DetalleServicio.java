@@ -30,12 +30,15 @@ public class DetalleServicio {
 	private Integer idDetalleServicio;
 	@Column(name = "nombre")
 	private String nombre;
+	@Column(name = "tipo")
+	private String tipo;
 	@Column(name = "estado")
 	private Integer estado;
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JsonBackReference
 	@JoinColumn(name="id_servicio")
 	private ServiciosPrestados servicios;
+	
 	@JsonManagedReference
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="detalleServicio")
 	Set<HistoricoTarifas> tarifas = new HashSet<HistoricoTarifas>();
@@ -82,6 +85,12 @@ public class DetalleServicio {
 	}
 	public void setServicios(ServiciosPrestados servicios) {
 		this.servicios = servicios;
+	}
+	public String getTipo() {
+		return tipo;
+	}
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 	

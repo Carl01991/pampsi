@@ -159,7 +159,7 @@ public class ServiciosPrestadosDao implements ServiciosPrestadosService{
 	}
 
 	@Override
-	public List<ServiciosPrestadosResult> findByDepartamentoIdDepartamentoAndTipo(Integer departamento, String tipo) {
+	public List<ServiciosPrestadosResult> findByDepartamentoIdDepartamentoAndTipo(String tipo) {
 		// TODO Auto-generated method stub
 		return null;
 	}

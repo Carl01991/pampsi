@@ -29,6 +29,7 @@ import com.ingsoft.allpay.model.Ciudadano;
 import com.ingsoft.allpay.model.DpiModel;
 import com.ingsoft.allpay.services.CurrensyService;
 import com.ingsoft.allpay.services.RestCountries;
+import com.mysql.jdbc.util.Base64Decoder;
 import com.sltech.dpi.exception.DPIConnectException;
 import com.sltech.dpi.exception.DPIException;
 import com.sltech.dpi.smartcard.DatosdpiTO;
@@ -45,7 +46,7 @@ public class MainController {
 	CurrensyService currensyService;
 	@Autowired
 	MongoTemplate mongoTemplate;
-	@Autowired 
+	@Autowired
 	ImageGenerator imageGenerator;
 
 	@RequestMapping("/")
@@ -59,9 +60,6 @@ public class MainController {
 		return "dpidetector";
 	}
 
-
-	
-
 	@RequestMapping("uploadvar")
 	public String uploadvar(Model model) {
 		return "uploadvar";
@@ -70,11 +68,10 @@ public class MainController {
 	@SuppressWarnings("deprecation")
 	@RequestMapping(value = "/adduser")
 	public String addciudadno(Model model) throws CardException, DPIConnectException, DPIException, IOException {
-		 com.ingsoft.allpay.methods.SCardConexion sc = new com.ingsoft.allpay.methods.SCardConexion();
-		 DatosdpiTO dpi = getDPI(sc);
-		
-		DpiModel dpiResult = new DpiModel() ;
-		
+		com.ingsoft.allpay.methods.SCardConexion sc = new com.ingsoft.allpay.methods.SCardConexion();
+		DatosdpiTO dpi = getDPI(sc);
+		DpiModel dpiResult = new DpiModel();
+
 		dpiResult.setApellido1(dpi.getApellido1());
 		dpiResult.setApellido2(dpi.getApellido2());
 		dpiResult.setApellidoCasada(dpi.getApellidoDeCasada()); 
@@ -90,35 +87,30 @@ public class MainController {
 		dpiResult.setSerialNumber(dpi.getSerialNumber());
 		dpiResult.setDepartamento(dpi.getCedulaDepartamento());
 		dpiResult.setMunicipio(dpi.getCedulaMunicipio());
-		model.addAttribute("dpi",dpiResult);
-//		model.addAttribute("image",imageGenerator.ByteArrayToImage(dpi.getFoto())); 
-		System.out.println(dpi.getFoto());
+		model.addAttribute("dpi", dpiResult);
+		 
+		String base64Encoded = Base64.getEncoder().encodeToString(dpi.getFoto());
 
+		
+	
+		model.addAttribute("image", base64Encoded);
+		System.out.println(base64Encoded);
 		return "started";
 	}
-	
-	
-	
-	
-	private DatosdpiTO getDPI(com.ingsoft.allpay.methods.SCardConexion sc) throws CardException, DPIConnectException, DPIException, IOException {
-		  System.out.println("Leyendo esta maravlla");
-		  CardUtils cardUtils; 
-		   long startTime = System.currentTimeMillis();
-		  System.out.println(CardUtils.checkATR(sc.connect(0, "*").getBytes()));
-		   SmartCardDPIReader smartDPI = new SmartCardDPIReader(sc.terminals().get(0));
-	       DatosdpiTO dpi;
-	       
 
-	  	dpi = smartDPI.readAllData();
-	  	smartDPI.readFingerPrintsEnrolled();
+	private DatosdpiTO getDPI(com.ingsoft.allpay.methods.SCardConexion sc)
+			throws CardException, DPIConnectException, DPIException, IOException {
+		System.out.println("Leyendo esta maravlla");
+		CardUtils cardUtils;
+		long startTime = System.currentTimeMillis();
+		System.out.println(CardUtils.checkATR(sc.connect(0, "*").getBytes()));
+		SmartCardDPIReader smartDPI = new SmartCardDPIReader(sc.terminals().get(0));
+		DatosdpiTO dpi;
+
+		dpi = smartDPI.readAllData();
+		smartDPI.readFingerPrintsEnrolled();
 		return dpi;
-	  	
-		}
 
-
-
-	
-	
-	
+	}
 
 }

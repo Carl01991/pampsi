@@ -12,9 +12,10 @@ import com.ingsoft.allpay.resultmodel.ServiciosPrestadosResult;
 
 public interface ServiciosPrestadosService extends JpaRepository<ServiciosPrestados, Serializable>{
 	
-	@Query("Select new com.ingsoft.allpay.resultmodel.ServiciosPrestadosResult(sv.idServicio, sv.nombreServicio,"
-			+ "sv.descripcionServicio, sv.estado, sv.tipo)"
-			+ " from ServiciosPrestados sv where sv.departamento.idDepartamento=?1 and sv.tipo=?2")
-	List<ServiciosPrestadosResult> findByDepartamentoIdDepartamentoAndTipo(Integer departamento,String tipo);
+	
+	@Query("Select new com.ingsoft.allpay.resultmodel.ServiciosPrestadosResult(dt.idDetalleServicio as idServicio, dt.nombre,"
+			+ "dt.estado, dt.tipo)"
+			+ " from DetalleServicio dt where dt.tipo=?1")
+	List<ServiciosPrestadosResult> findByDepartamentoIdDepartamentoAndTipo(String tipo); 
 
 }

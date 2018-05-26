@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController; 
+import org.springframework.web.bind.annotation.RestController;
 
 import com.ingsoft.allpay.dao.ResponseGeneric;
 import com.ingsoft.allpay.model.Banco;
@@ -153,7 +153,7 @@ public class BancoController {
 	}
 	
 	@PostMapping(value = "/realizarTransaccion")
-	public ComprobarTransaccion realizarTransaccion(@RequestParam String cuentaDebito, @RequestParam String nombre, @RequestParam String monto, 
+	public ComprobarTransaccion realizarTransaccion(@RequestParam String cuentaDebito, @RequestParam String cui, @RequestParam String monto, 
 			@RequestParam String idServicio)
 	{
 		ComprobarTransaccion response = new ComprobarTransaccion();
@@ -182,7 +182,7 @@ public class BancoController {
 				
 				
 				creditoT.setCuentaBancaria(cuentaDep);	
-				creditoT.setDescripcion("Pago servicio "+serv.getNombreServicio()+" a nombre de "+nombre);
+				creditoT.setDescripcion("Pago servicio "+serv.getNombreServicio()+" con numero de identificacion "+cui);
 				creditoT.setFecha(new Date());
 				creditoT.setTipo("1");
 				creditoT.setValor(Float.parseFloat(monto));

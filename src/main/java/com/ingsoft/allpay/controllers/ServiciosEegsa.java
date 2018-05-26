@@ -17,6 +17,7 @@ import com.ingsoft.allpay.dao.ResponseGeneric;
 import com.ingsoft.allpay.dao.ResponseGenricValue;
 import com.ingsoft.allpay.model.HistorialCobros;
 import com.ingsoft.allpay.model.RegistroDePagos;
+import com.ingsoft.allpay.resultmodel.DetalleServiciosResultmodel;
 import com.ingsoft.allpay.resultmodel.HistoricoGeneralPorCiudadano;
 import com.ingsoft.allpay.resultmodel.HistoricoPorCiudadano;
 import com.ingsoft.allpay.resultmodel.ServiciosPrestadosResult;
@@ -44,8 +45,9 @@ public class ServiciosEegsa {
 		ResponseGeneric<ServiciosPrestadosResult> response = new ResponseGeneric<ServiciosPrestadosResult>();
 		try
 		{
-			response.setResponse(serviciosPrestadosService.findByDepartamentoIdDepartamentoAndTipo(1, "gua"));;			
+			response.setResponse(serviciosPrestadosService.findByDepartamentoIdDepartamentoAndTipo("eegsa"));;			
 			response.setCode("1");
+			
 			response.setMessage("Transaccion correcta");
 			return response;
 		}catch(Exception e)
@@ -104,7 +106,7 @@ public class ServiciosEegsa {
 			pago.setValor(Float.parseFloat(valor));
 			pago.setFecha(new Date());
 			HistorialCobros actual = historicoUsuario.findOne(Integer.parseInt(documentoCobro));
-			logger.info("ID DE ACTUAL "+actual.getDetalleServicio().getIdDetalleServicio());
+			logger.info("ID DE ACTUAL "+actual.getFecha());
 			List<HistorialCobros> anteriores = historicoUsuario.findExistAnterior(documentoIdentificacion, actual.getFecha(), actual.getDetalleServicio().getIdDetalleServicio());
 			if(!anteriores.isEmpty())
 			{
@@ -129,6 +131,25 @@ public class ServiciosEegsa {
 			response.setMessage("Error al obtener servicios muni guate");
 			logger.info("error ",e);
 	
+			return response;
+			
+		}
+	}
+	
+	@GetMapping(value = "/getListaServiciosAsociados")
+	public ResponseGeneric<DetalleServiciosResultmodel> getListServicios(@RequestParam String cui){
+		
+		ResponseGeneric<DetalleServiciosResultmodel> response = new ResponseGeneric<DetalleServiciosResultmodel>();
+		try
+		{
+			response.setResponse(detalleServiciosService.findByServicio(3,cui));
+			response.setCode("1");
+			response.setMessage("Transaccion correcta");
+			return response;
+		}catch(Exception e)
+		{
+			response.setCode("0");
+			response.setMessage("Error al obtener servicios muni guate");
 			return response;
 			
 		}

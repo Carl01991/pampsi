@@ -1,28 +1,28 @@
 package com.ingsoft.allpay;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-import javax.smartcardio.CardException;
-import javax.smartcardio.CardTerminal;
-
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-//import com.sltech.dpi.smartcard.DatosdpiTO;
-//import com.sltech.dpi.smartcard.SmartCardDPIReader; 
-//import com.sltech.dpi.util.CardUtils;
-
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.ComponentScan;
 
 
+
+
+
+
+@ComponentScan
+@EnableAutoConfiguration
 @SpringBootApplication
-public class AllpayApplication {
+public class AllpayApplication extends SpringBootServletInitializer {
+	
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(AllpayApplication.class);
+    }
 
-	@SuppressWarnings("restriction")
-	public static void main(String[] args) throws CardException  {
+	public static void main(String[] args)   {
 		SpringApplication.run(AllpayApplication.class, args); 
  
 		

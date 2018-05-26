@@ -49,8 +49,9 @@ public class ServiciosMuniGuateController {
 		ResponseGeneric<ServiciosPrestadosResult> response = new ResponseGeneric<ServiciosPrestadosResult>();
 		try
 		{
-			response.setResponse(serviciosPrestadosService.findByDepartamentoIdDepartamentoAndTipo(1, "gua"));;			
+			response.setResponse(serviciosPrestadosService.findByDepartamentoIdDepartamentoAndTipo("gua"));;			
 			response.setCode("1");
+			
 			response.setMessage("Transaccion correcta");
 			return response;
 		}catch(Exception e)
@@ -60,13 +61,13 @@ public class ServiciosMuniGuateController {
 			return response;
 		}
 	}
-	@GetMapping(value = "/getListaServicios")
-	public ResponseGeneric<DetalleServiciosResultmodel> getListServicios(){
+	@GetMapping(value = "/getListaServiciosAsociados")
+	public ResponseGeneric<DetalleServiciosResultmodel> getListServicios(@RequestParam String cui){
 		
 		ResponseGeneric<DetalleServiciosResultmodel> response = new ResponseGeneric<DetalleServiciosResultmodel>();
 		try
 		{
-			response.setResponse(detalleServiciosService.findByServicio(1));
+			response.setResponse(detalleServiciosService.findByServicio(1,cui));
 			response.setCode("1");
 			response.setMessage("Transaccion correcta");
 			return response;

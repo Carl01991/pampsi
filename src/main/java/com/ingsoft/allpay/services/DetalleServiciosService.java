@@ -12,7 +12,7 @@ import com.ingsoft.allpay.resultmodel.DetalleServiciosResultmodel;
 public interface DetalleServiciosService extends JpaRepository<DetalleServicio, Serializable>{
 	
 	@Query("select new com.ingsoft.allpay.resultmodel.DetalleServiciosResultmodel(ds.idDetalleServicio, ds.nombre, ds.estado)"
-			+ " from DetalleServicio ds where ds.servicios.idServicio=?1 and ds.estado = 1")
-	List<DetalleServiciosResultmodel> findByServicio(Integer idServicio);
+			+ " from DetalleServicio ds join ds.cobros hr where ds.servicios.idServicio=?1 and ds.estado = 1 and hr.documentoIdentificacion =?2 group by ds.idDetalleServicio")
+	List<DetalleServiciosResultmodel> findByServicio(Integer idServicio, String cui);
 
 }
